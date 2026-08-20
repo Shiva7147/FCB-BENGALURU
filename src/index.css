@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --blau-blue: #004D98;
+    --blau-navy: #060e1a;
+    --blau-dark: #091224;
+    --blau-garnet: #A50044;
+    --blau-crimson: #70002b;
+    --blau-gold: #EDBB00;
+    --blau-gold-bright: #FFD700;
+  }
+
+  body {
+    background-color: #060e1a;
+    color: #f3f4f6;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* FC Barcelona Jersey Texture Background */
+.bg-jersey-pattern {
+  background-color: #060e1a;
+  background-image: 
+    linear-gradient(90deg, 
+      rgba(0, 77, 152, 0.25) 0%, 
+      rgba(0, 77, 152, 0.25) 20%, 
+      rgba(6, 14, 26, 0.4) 20%, 
+      rgba(6, 14, 26, 0.4) 25%, 
+      rgba(165, 0, 68, 0.25) 25%, 
+      rgba(165, 0, 68, 0.25) 45%, 
+      rgba(6, 14, 26, 0.4) 45%, 
+      rgba(6, 14, 26, 0.4) 50%
+    ),
+    radial-gradient(circle at 50% 0%, rgba(0, 77, 152, 0.4), transparent 70%);
+  background-size: 120px 100%, 100% 100%;
+}
+
+.bg-stadium-hero {
+  background: 
+    radial-gradient(circle at 50% 20%, rgba(237, 187, 0, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 15% 50%, rgba(0, 77, 152, 0.45) 0%, transparent 55%),
+    radial-gradient(circle at 85% 50%, rgba(165, 0, 68, 0.45) 0%, transparent 55%),
+    linear-gradient(180deg, #040912 0%, #081326 50%, #060e1a 100%);
+}
+
+/* Glassmorphism panel */
+.glass-panel {
+  background: rgba(10, 19, 36, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-gold {
+  background: rgba(15, 25, 45, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(237, 187, 0, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(237, 187, 0, 0.05);
+}
+
+.glass-panel-blaugrana {
+  background: linear-gradient(135deg, rgba(0, 77, 152, 0.25) 0%, rgba(165, 0, 68, 0.25) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Gold typography */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #FFF099 0%, #EDBB00 50%, #B8860B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-blau-gradient {
+  background: linear-gradient(135deg, #60A5FA 0%, #004D98 50%, #A50044 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Senyera (Catalan Flag) Accent Bar */
+.senyera-accent {
+  background: repeating-linear-gradient(
+    90deg,
+    #EDBB00 0px,
+    #EDBB00 6px,
+    #DB0030 6px,
+    #DB0030 12px
+  );
+}
+
+/* Custom Emblem animations */
+@keyframes slowRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-slow-rotate {
+  animation: slowRotate 35s linear infinite;
+}
+
+.animate-slow-rotate:hover {
+  animation-play-state: paused;
+}
+
+/* Pulse glow for match nights */
+@keyframes stadiumGlow {
+  0%, 100% { box-shadow: 0 0 25px rgba(0, 77, 152, 0.4), 0 0 45px rgba(165, 0, 68, 0.3); }
+  50% { box-shadow: 0 0 35px rgba(237, 187, 0, 0.5), 0 0 60px rgba(0, 77, 152, 0.5); }
+}
+
+.stadium-glow {
+  animation: stadiumGlow 4s infinite ease-in-out;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #060e1a;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+  border: 1px solid rgba(237, 187, 0, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #EDBB00;
+}
