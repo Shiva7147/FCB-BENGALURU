@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#A50044]/15 rounded-full blur-3xl pointer-events-none" />
 
       {/* Top Catalan Senyera bar */}
-      <div className="absolute top-0 inset-x-0 h-1 senyera-accent" />
+      <div className="absolute top-0 inset-x-0 senyera-barca-strip" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
@@ -96,7 +96,6 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-xs font-semibold">
               <li><Link to="/announcements" className="hover:text-[#EDBB00] transition-colors">Announcements</Link></li>
               <li><Link to="/chants" className="hover:text-[#EDBB00] transition-colors">Barça Chants & Lyrics</Link></li>
-              <li><Link to="/achievements" className="hover:text-[#EDBB00] transition-colors">Trophy Room & Heritage</Link></li>
               <li><Link to="/core-members" className="hover:text-[#EDBB00] transition-colors">Core Team & Leads</Link></li>
               <li><Link to="/shop" className="hover:text-[#EDBB00] transition-colors">Official Fan Merchandise</Link></li>
               <li><Link to="/contact" className="hover:text-[#EDBB00] transition-colors">Contact Us</Link></li>

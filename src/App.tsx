@@ -14,7 +14,6 @@ import { MatchDay } from './routes/MatchDay';
 import { Gallery } from './routes/Gallery';
 import { Announcements } from './routes/Announcements';
 import { Chants } from './routes/Chants';
-import { Achievements } from './routes/Achievements';
 import { CoreMembers } from './routes/CoreMembers';
 import { Shop } from './routes/Shop';
 import { CartPage } from './routes/CartPage';
@@ -50,7 +49,6 @@ export function App() {
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/announcements" element={<Announcements />} />
                 <Route path="/chants" element={<Chants />} />
-                <Route path="/achievements" element={<Achievements />} />
                 <Route path="/core-members" element={<CoreMembers />} />
                 <Route path="/shop" element={<Shop />} />
                 <Route path="/cart" element={<CartPage />} />

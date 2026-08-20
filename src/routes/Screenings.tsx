@@ -65,10 +65,12 @@ export const Screenings: React.FC = () => {
         {filteredScreenings.map((sc) => (
           <div
             key={sc.id}
-            className={`glass-panel rounded-3xl overflow-hidden border transition-all duration-300 shadow-xl flex flex-col justify-between ${
-              sc.isUpcoming ? 'border-[#EDBB00]/40 hover:border-[#EDBB00]' : 'border-white/10 opacity-90'
+            className={`ticket-stub rounded-3xl overflow-hidden border transition-all duration-300 shadow-2xl flex flex-col justify-between ${
+              sc.isUpcoming ? 'border-[#EDBB00]/60 hover:border-[#EDBB00]' : 'border-white/10 opacity-90'
             }`}
           >
+            {/* Top Senyera Accent Strip */}
+            <div className="senyera-barca-strip" />
             {/* Poster Header */}
             <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#071120]">
               <ImageWithFallback

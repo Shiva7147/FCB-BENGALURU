@@ -345,10 +345,10 @@ export const CheckoutPage: React.FC = () => {
               ORDER CONFIRMED • ID: {orderId}
             </span>
             <h2 className="text-3xl font-black text-white uppercase">
-              Visca el Barça!
+              Order Request Received
             </h2>
             <p className="text-sm text-gray-200">
-              Thank you for ordering, <strong className="text-[#EDBB00]">{formData.name}</strong>! Your FC Barcelona Supporters Club Bengaluru gear order has been received.
+              Visca el Barça! Thank you, <strong className="text-[#EDBB00]">{formData.name}</strong>. We have received your merchandise order request and will contact you with the next steps for delivery or local screening pickup.
             </p>
           </div>
 

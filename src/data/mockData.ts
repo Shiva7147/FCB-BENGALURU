@@ -270,20 +270,20 @@ export const INITIAL_ACHIEVEMENTS: Achievement[] = [
 export const INITIAL_PRODUCTS: Product[] = [
   {
     id: 'prod-1',
-    name: 'Blaugrana Bengaluru 2026/27 Edition Scarf',
+    name: 'Barça Bengaluru Official Woven Scarf',
     price: 699,
-    description: 'Premium woven acrylic supporter scarf featuring high-density embroidery of "MÉS QUE UN CLUB" on one side and "BLAUGRANA BENGALURU" on the reverse.',
-    imageUrl: 'https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?auto=format&fit=crop&w=800&q=80',
+    description: 'Premium heavy-knit supporter scarf with gold embroidered "MÉS QUE UN CLUB" text on Blaugrana background.',
+    imageUrl: '/src/assets/barca_bengaluru_scarf.jpg',
     category: 'Accessories',
     sizes: ['One Size'],
     inStock: true,
-    badge: 'BESTSELLER'
+    badge: 'MUST HAVE'
   },
   {
     id: 'prod-2',
-    name: 'FCB Supporters Club Bengaluru Tech Tee',
+    name: 'FCB Supporters Club Bengaluru Matchday T-Shirt',
     price: 899,
-    description: 'Lightweight, moisture-wicking dry-fit polyester matchday shirt with gold metallic crest accent and mesh side ventilation.',
+    description: 'Lightweight performance dry-fit cotton tee in deep navy with gold metallic crest emblem.',
     imageUrl: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80',
     category: 'Apparel',
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
@@ -292,9 +292,9 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-3',
-    name: 'Culés Bengaluru Embroidered Snapback Cap',
+    name: 'Barça Bengaluru Supporters Snapback Cap',
     price: 549,
-    description: 'Deep navy 6-panel structured cap with metallic gold embroidered emblem and Senyera flag strip underneath the brim.',
+    description: 'Structured 6-panel navy cap with gold embroidered FCB emblem and Senyera flag strip.',
     imageUrl: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=800&q=80',
     category: 'Accessories',
     sizes: ['Adjustable'],
@@ -302,24 +302,14 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-4',
-    name: 'Barça Bengaluru Matchday Pullover Hoodie',
-    price: 1499,
-    description: 'Heavyweight 320 GSM fleece hoodie with fleece lining, golden drawstrings, front kangaroo pocket, and subtle gold back graphics.',
-    imageUrl: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80',
+    name: 'Official Supporters Club Matchday Jersey',
+    price: 1299,
+    description: 'Authentic Blaugrana vertical stripes jersey with Bengaluru Culés gold arm badge and breathable mesh panels.',
+    imageUrl: 'https://images.unsplash.com/photo-1518604666860-9ed391f76460?auto=format&fit=crop&w=800&q=80',
     category: 'Apparel',
     sizes: ['S', 'M', 'L', 'XL'],
     inStock: true,
-    badge: 'NEW ARRIVAL'
-  },
-  {
-    id: 'prod-5',
-    name: 'Camp Nou Nostalgia Metallic Enamel Pin Set',
-    price: 349,
-    description: 'Set of 3 custom metal pins: Spotify Camp Nou Stadium Silhouette, Senyera Crest, and Culé Bengaluru Flag.',
-    imageUrl: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80',
-    category: 'Collectibles',
-    sizes: ['One Size'],
-    inStock: true
+    badge: 'NEW RELEASE'
   }
 ];
 
