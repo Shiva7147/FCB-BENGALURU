@@ -30,8 +30,8 @@ export const Shop: React.FC = () => {
       
       <SectionHeader
         badge="OFFICIAL MERCHANDISE"
-        title="FCB Supporters Club Bengaluru Store"
-        subtitle="Gear up in official Bengaluru Culés apparel, woven matchday scarves, snapback caps, hoodies, and metal crest pin sets."
+        title="THE FIRST DROP"
+        subtitle="Gear up in official Bengaluru Culés apparel, woven matchday scarves, snapback caps, and jerseys."
       />
 
       {/* Filter Tabs */}

@@ -21,9 +21,9 @@ export const CoreMembers: React.FC = () => {
     <div className="pt-24 pb-20 space-y-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <SectionHeader
-        badge="SUPPORTERS CLUB SQUAD"
+        badge="THE PEOPLE BEHIND THE PASSION"
         title="Core Team Player Cards"
-        subtitle="Meet the leadership team behind FC Barcelona Supporters Club Bengaluru. Click any card for detailed profiles."
+        subtitle="A supporters club is only as strong as the people who show up for it. Click any card for detailed profiles."
       />
 
       {/* Collectible Trading Cards Grid (Rules #8 & #9) */}

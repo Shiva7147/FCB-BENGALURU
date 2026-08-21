@@ -8,11 +8,11 @@ export const Contact: React.FC = () => {
   return (
     <div className="pt-24 pb-20 space-y-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      {/* Rule #15 Headline & Copy */}
+      {/* Rule #17 Headline & Copy */}
       <SectionHeader
-        badge="JOIN THE BENGALURU CULÉS"
-        title="SEE YOU AT MATCH DAY"
-        subtitle="Whether you're a lifelong Culé or just discovering Barça, come join us."
+        badge="JOIN THE COMMUNITY"
+        title="COME FIND US."
+        subtitle="Whether you're a lifelong Culé or just discovering Barça, there's always room for one more."
       />
 
       {/* Editorial Supporter Contact Cards Grid (Rule #15) */}
