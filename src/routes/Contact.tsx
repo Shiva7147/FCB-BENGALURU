@@ -15,12 +15,12 @@ export const Contact: React.FC = () => {
         subtitle="Whether you're a lifelong Culé or just discovering Barça, there's always room for one more."
       />
 
-      {/* Editorial Supporter Contact Cards Grid (Rule #15) */}
+      {/* Editorial Supporter Contact Cards Grid (Section 16 & 17) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         
         {/* 1. INSTAGRAM */}
         <a
-          href="https://instagram.com"
+          href="https://www.instagram.com/fcbbengaluru"
           target="_blank"
           rel="noopener noreferrer"
           className="glass-panel-gold rounded-3xl p-8 border border-[#EDBB00]/40 text-left space-y-4 hover:scale-105 transition-all shadow-xl group block"
@@ -31,17 +31,17 @@ export const Contact: React.FC = () => {
           <span className="text-[10px] font-mono text-[#EDBB00] uppercase tracking-widest block">01 • SOCIAL</span>
           <h3 className="text-xl font-black text-white uppercase">Instagram</h3>
           <p className="text-xs text-gray-300 leading-relaxed">
-            Follow the community for matchday photos, screening posters, and chant videos.
+            Follow @fcbbengaluru for matchday screening posters, chant videos, and photo highlights.
           </p>
           <div className="pt-2 flex items-center space-x-1 text-xs font-bold text-[#EDBB00]">
-            <span>Follow Community</span>
+            <span>@fcbbengaluru</span>
             <ArrowRight className="w-4 h-4" />
           </div>
         </a>
 
-        {/* 2. WHATSAPP */}
+        {/* 2. WHATSAPP & LINKTREE */}
         <a
-          href="https://wa.me/919876543210"
+          href="https://linktr.ee/fcb.bengaluru"
           target="_blank"
           rel="noopener noreferrer"
           className="glass-panel-gold rounded-3xl p-8 border border-[#25D366]/40 text-left space-y-4 hover:scale-105 transition-all shadow-xl group block"
@@ -50,9 +50,9 @@ export const Contact: React.FC = () => {
             <MessageCircle className="w-6 h-6" />
           </div>
           <span className="text-[10px] font-mono text-[#25D366] uppercase tracking-widest block">02 • CHAT HUB</span>
-          <h3 className="text-xl font-black text-white uppercase">WhatsApp</h3>
+          <h3 className="text-xl font-black text-white uppercase">WhatsApp & Linktree</h3>
           <p className="text-xs text-gray-300 leading-relaxed">
-            Join the official supporter community chat for match discussions and banter.
+            +91 97779 12631 / +91 99868 99287. Join the official supporter community chat.
           </p>
           <div className="pt-2 flex items-center space-x-1 text-xs font-bold text-[#25D366]">
             <span>Join Supporter Chat</span>
@@ -62,19 +62,19 @@ export const Contact: React.FC = () => {
 
         {/* 3. EMAIL */}
         <a
-          href="mailto:contact@barcabengaluru.com"
+          href="mailto:admin@fcbbengaluru.in"
           className="glass-panel-gold rounded-3xl p-8 border border-[#004D98]/50 text-left space-y-4 hover:scale-105 transition-all shadow-xl group block"
         >
           <div className="w-12 h-12 rounded-2xl bg-[#004D98] text-white flex items-center justify-center shadow-lg group-hover:rotate-6 transition-transform">
             <Mail className="w-6 h-6 text-[#60A5FA]" />
           </div>
           <span className="text-[10px] font-mono text-[#60A5FA] uppercase tracking-widest block">03 • DIRECT</span>
-          <h3 className="text-xl font-black text-white uppercase">Email</h3>
+          <h3 className="text-xl font-black text-white uppercase">Official Email</h3>
           <p className="text-xs text-gray-300 leading-relaxed">
-            Get in touch with the team for venue partnerships, press, or inquiries.
+            Get in touch for venue partnerships, sponsorships, press, or inquiries.
           </p>
           <div className="pt-2 flex items-center space-x-1 text-xs font-bold text-[#60A5FA]">
-            <span>contact@barcabengaluru.com</span>
+            <span>admin@fcbbengaluru.in</span>
           </div>
         </a>
 
@@ -89,7 +89,7 @@ export const Contact: React.FC = () => {
           <span className="text-[10px] font-mono text-[#EDBB00] uppercase tracking-widest block">04 • MATCH NIGHT</span>
           <h3 className="text-xl font-black text-white uppercase">Match Day</h3>
           <p className="text-xs text-gray-300 leading-relaxed">
-            Come experience a screening with Bengaluru's Culés under the lights.
+            Come experience live screenings with 500+ Bengaluru Culés under the lights.
           </p>
           <div className="pt-2 flex items-center space-x-1 text-xs font-bold text-[#EDBB00]">
             <span>View Screenings</span>

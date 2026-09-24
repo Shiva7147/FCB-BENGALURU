@@ -6,6 +6,8 @@ import { useAdmin } from '../context/AdminContext';
 import { Screening } from '../types';
 import { Calendar, Clock, MapPin, Ticket, Flame, Trophy, Info } from 'lucide-react';
 
+import { ScreeningHubPlanner } from '../components/ScreeningHubPlanner';
+
 export const Screenings: React.FC = () => {
   const { screenings } = useAdmin();
   const [activeRSVPScreening, setActiveRSVPScreening] = useState<Screening | null>(null);
@@ -21,10 +23,13 @@ export const Screenings: React.FC = () => {
     <div className="pt-24 pb-20 space-y-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <SectionHeader
-        badge="BLAUGRANA MATCHDAY SCREENINGS"
-        title="Live FC Barcelona Screenings in Bengaluru"
-        subtitle="Feel Spotify Camp Nou match atmosphere in Bangalore. High-definition screens, quad stereo surround, chants, and hundreds of passionate Culés."
+        badge="MATCHDAY SCREENINGS"
+        title="FC Barcelona Live Screenings in Bengaluru"
+        subtitle="Join fellow Culés in Bengaluru to watch Barça live under the lights with high-energy chants and passionate fan atmosphere."
       />
+
+      {/* Screening Hub Route Planner */}
+      <ScreeningHubPlanner />
 
       {/* Filter Tabs */}
       <div className="flex items-center justify-center space-x-2">

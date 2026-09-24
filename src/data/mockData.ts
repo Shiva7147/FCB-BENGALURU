@@ -270,14 +270,14 @@ export const INITIAL_ACHIEVEMENTS: Achievement[] = [
 export const INITIAL_PRODUCTS: Product[] = [
   {
     id: 'prod-1',
-    name: 'Barça Bengaluru Official Woven Scarf',
-    price: 699,
-    description: 'Premium heavy-knit supporter scarf with gold embroidered "MÉS QUE UN CLUB" text on Blaugrana background.',
+    name: 'FCB Bengaluru Scarf',
+    price: 799,
+    description: 'Crafted in official Barça Blaugrana — the deep blue and rich garnet red that defines everything we stand for. Double-layer knit, 160cm × 20cm. Woven "FCB Bengaluru" branding on one end, classic Barça stripes on the reverse. Worn at every screening. Raised at every goal. Tied to every memory.',
     imageUrl: '/src/assets/barca_bengaluru_scarf.jpg',
     category: 'Accessories',
-    sizes: ['One Size'],
+    sizes: ['One size (160cm × 20cm)'],
     inStock: true,
-    badge: 'MUST HAVE'
+    badge: 'OFFICIAL MERCH'
   },
   {
     id: 'prod-2',

@@ -4,15 +4,20 @@ import { ChantCard } from '../components/ChantCard';
 import { INITIAL_CHANTS } from '../data/mockData';
 import { Volume2, Flame, Trophy, Sparkles } from 'lucide-react';
 
+import { SpotifyPlayer } from '../components/SpotifyPlayer';
+
 export const Chants: React.FC = () => {
   return (
     <div className="pt-24 pb-20 space-y-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <SectionHeader
-        badge="STADIUM ATMOSPHERE"
-        title="FC Barcelona Chants & Anthem"
-        subtitle="Sing with passion! Learn the authentic Catalan stadium lyrics sung at Spotify Camp Nou and during matchday screenings in Bengaluru."
+        badge="BARÇA MATCHDAY CHANTS"
+        title="Sing With Spotify Camp Nou & Bengaluru Culés"
+        subtitle="Master the lyrics, Catalan translations, and stadium chant audio for matchday screenings in Bangalore."
       />
+
+      {/* Spotify Camp Nou Atmosphere Soundscape Player */}
+      <SpotifyPlayer />
 
       {/* Hero Banner Banner */}
       <div className="glass-panel-gold rounded-3xl p-8 text-center space-y-4 border border-[#EDBB00]/40 relative overflow-hidden">

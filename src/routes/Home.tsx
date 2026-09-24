@@ -4,6 +4,7 @@ import { ImageWithFallback } from '../components/PosterFallback';
 import { MarqueeScroller } from '../components/MarqueeScroller';
 import { RSVPModal } from '../components/RSVPModal';
 import { MatchCountdown } from '../components/MatchCountdown';
+import { LiveMatchHype } from '../components/LiveMatchHype';
 import { useAdmin } from '../context/AdminContext';
 import { Screening } from '../types';
 import heroImage from '../assets/hero_matchday.jpg';
@@ -26,37 +27,61 @@ export const Home: React.FC = () => {
             alt="Bengaluru Culés Matchday Screening"
             className="w-full h-full object-cover object-center filter brightness-65 contrast-110 scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#060e1a] via-[#060e1a]/75 to-[#040912]/80" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A1A] via-[#0A0A1A]/75 to-[#0A0A1A]/80" />
         </div>
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8">
           <div className="inline-block px-4 py-1.5 rounded-full bg-[#004D98]/60 border border-[#EDBB00]/50 text-[#EDBB00] text-xs font-black uppercase tracking-widest shadow-2xl">
-            BENGALURU SUPPORTERS CLUB • MATCHDAY HUB
+            FC BARCELONA SUPPORTERS CLUB BENGALURU • EST. 2021
           </div>
 
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white uppercase tracking-tight leading-[1.05] max-w-4xl mx-auto drop-shadow-2xl">
-            EXPERIENCE MATCH DAY <br />
-            <span className="text-gold-gradient">UNDER THE LIGHTS OF BANGALORE</span>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white uppercase tracking-tight leading-[1.05] max-w-4xl mx-auto drop-shadow-2xl font-mono">
+            MÉS QUE UN CLUB <br />
+            <span className="text-gold-gradient font-sans">EXPERIENCE MATCH DAY UNDER THE LIGHTS</span>
           </h1>
 
-          <p className="text-base sm:text-xl text-gray-200 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-md">
-            Where Bengaluru's Culés come together for football, friendship and unforgettable nights.
+          <p className="text-base sm:text-xl text-gray-200 max-w-3xl mx-auto font-medium leading-relaxed drop-shadow-md">
+            Bengaluru's home for FC Barcelona fans. We bleed blaugrana in the heart of India's garden city.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md sm:max-w-lg mx-auto pt-4">
+          {/* 3 Core Commercial & Community CTAs (Section 4 Requirement) */}
+          <div className="flex flex-wrap items-center justify-center gap-3 max-w-2xl mx-auto pt-2">
             <Link
-              to="/screenings"
-              className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-[#EDBB00] via-[#F3C623] to-[#B8860B] text-[#060e1a] font-extrabold text-sm uppercase tracking-wider hover:brightness-110 transition-all shadow-2xl shadow-[#EDBB00]/30 text-center"
+              to="/join"
+              className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#EDBB00] via-[#F3C623] to-[#B8860B] text-[#060e1a] font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition-all shadow-2xl shadow-[#EDBB00]/30 text-center"
             >
-              Experience Match Day
+              Become a Member
             </Link>
 
             <Link
-              to="/join"
-              className="w-full sm:w-auto px-8 py-4 rounded-xl bg-white/10 border border-white/20 text-white hover:border-[#EDBB00] font-extrabold text-sm uppercase tracking-wider transition-all text-center"
+              to="/screenings"
+              className="px-6 py-3.5 rounded-xl bg-[#004D98]/80 hover:bg-[#004D98] border border-[#EDBB00]/50 text-white font-extrabold text-xs uppercase tracking-wider transition-all text-center"
             >
-              Join the Community
+              Upcoming Events
             </Link>
+
+            <Link
+              to="/shop"
+              className="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-extrabold text-xs uppercase tracking-wider transition-all text-center"
+            >
+              Buy our Merch
+            </Link>
+          </div>
+
+          {/* 3-Second Social Proof Stats Bar (Section 2 Requirement) */}
+          <div className="pt-6 border-t border-white/15 max-w-3xl mx-auto grid grid-cols-3 gap-4 text-center">
+            <div className="bg-black/40 p-3 rounded-2xl border border-white/10 backdrop-blur-md">
+              <span className="text-2xl sm:text-3xl font-black text-[#EDBB00] font-mono block">1,500+</span>
+              <span className="text-[10px] sm:text-xs text-gray-300 font-bold uppercase tracking-wider">Members</span>
+            </div>
+            <div className="bg-black/40 p-3 rounded-2xl border border-white/10 backdrop-blur-md">
+              <span className="text-2xl sm:text-3xl font-black text-white font-mono block">4 Years</span>
+              <span className="text-[10px] sm:text-xs text-gray-300 font-bold uppercase tracking-wider">Strong (Est. 2021)</span>
+            </div>
+            <div className="bg-black/40 p-3 rounded-2xl border border-white/10 backdrop-blur-md">
+              <span className="text-2xl sm:text-3xl font-black text-[#A50044] font-mono block">30+</span>
+              <span className="text-[10px] sm:text-xs text-gray-300 font-bold uppercase tracking-wider">Events Hosted</span>
+            </div>
           </div>
         </div>
       </section>
@@ -105,7 +130,7 @@ export const Home: React.FC = () => {
 
       {/* 3. NEXT MATCH EVENT POSTER STYLE (Rule #8) */}
       {nextMatch && (
-        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="ticket-stub rounded-3xl p-6 sm:p-10 border border-[#EDBB00]/60 shadow-2xl text-left space-y-6">
             <div className="senyera-barca-strip" />
 
@@ -152,6 +177,9 @@ export const Home: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* Live Matchday Hype & Fan Poll */}
+          <LiveMatchHype />
         </section>
       )}
 

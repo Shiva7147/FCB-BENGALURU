@@ -4,6 +4,8 @@ import { useAdmin } from '../context/AdminContext';
 import { Trophy, Calendar, Clock, MapPin, Users, CheckCircle2, Shield, Flame } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
+import { TacticalBoard } from '../components/TacticalBoard';
+
 export const MatchDay: React.FC = () => {
   const { turfEvents, addTurfEvent } = useAdmin();
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
@@ -32,10 +34,13 @@ export const MatchDay: React.FC = () => {
       
       {/* Pitch Headline (Rule #12) */}
       <SectionHeader
-        badge="BENGALURU CULÉS TURF GAMES"
-        title="Tiki-Taka Spirit. Bengaluru Heart."
-        subtitle="Put on your Blaugrana jersey and step onto the pitch. Weekend 7v7 scrimmage, inter-fan club tournaments, and friendly kickabouts."
+        badge="BENGALURU CULÉS FOOTBALL"
+        title="Turf Games & Fan Kickabouts"
+        subtitle="Put on the Blaugrana jersey, play tiki-taka football, and compete in weekend 7v7 matches across Bangalore."
       />
+
+      {/* Interactive Tactical Pitch Board */}
+      <TacticalBoard />
 
       {/* Football Pitch Graphic Banner */}
       <div className="relative rounded-3xl p-8 sm:p-12 overflow-hidden border border-[#EDBB00]/40 shadow-2xl bg-[#091810]">

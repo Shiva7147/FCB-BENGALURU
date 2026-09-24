@@ -3,8 +3,8 @@
 @layer base {
   :root {
     --blau-blue: #004D98;
-    --blau-navy: #060e1a;
-    --blau-dark: #091224;
+    --blau-navy: #0A0A1A;
+    --blau-dark: #070714;
     --blau-garnet: #A50044;
     --blau-crimson: #70002b;
     --blau-gold: #EDBB00;
@@ -12,9 +12,9 @@
   }
 
   body {
-    background-color: #060e1a;
+    background-color: #0A0A1A;
     color: #f3f4f6;
-    font-family: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Outfit', 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     overflow-x: hidden;
   }
 }

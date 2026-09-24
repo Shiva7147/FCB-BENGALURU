@@ -4,6 +4,8 @@ import { Shield, Check, Users, Ticket, Flame, MessageCircle, Mail, Sparkles, Arr
 import { InstagramIcon } from '../components/SocialIcons';
 import confetti from 'canvas-confetti';
 
+import { MemberCardGenerator } from '../components/MemberCardGenerator';
+
 export const Join: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -47,6 +49,83 @@ export const Join: React.FC = () => {
         title="Join The FC Barcelona Supporters Club"
         subtitle="Connect with Barcelona fans in Bengaluru for match screenings, turf games, chants, and unforgettable matchday nights."
       />
+
+      {/* Membership Tiers Comparison (Culer vs Soci - Section 2 Client Document) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+        {/* Tier 1: Culer */}
+        <div className="glass-panel p-8 rounded-3xl border border-white/10 space-y-6 relative overflow-hidden">
+          <div className="flex justify-between items-start">
+            <div>
+              <span className="text-xs font-mono text-[#EDBB00] font-bold uppercase tracking-widest block">COMMUNITY TIER</span>
+              <h3 className="text-3xl font-black text-white uppercase mt-1">CULER MEMBER</h3>
+            </div>
+            <span className="px-3 py-1 rounded-full bg-[#004D98] text-[#EDBB00] font-mono text-xs font-black uppercase">
+              Standard
+            </span>
+          </div>
+
+          <p className="text-xs text-gray-300 leading-relaxed">
+            Essential membership for every Barça fan in Bengaluru. Join screening RSVPs, weekly turf games, and WhatsApp groups.
+          </p>
+
+          <ul className="space-y-2.5 text-xs text-gray-200 font-sans">
+            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span>Early RSVP access for all match screenings</span></li>
+            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span>Digital Bengaluru Culé Pass Card</span></li>
+            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span>Official Bengaluru Culés WhatsApp Community</span></li>
+            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span>Weekend 7v7 turf game booking access</span></li>
+          </ul>
+
+          <button
+            onClick={() => {
+              const el = document.getElementById('registration-form');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="w-full py-3.5 rounded-xl bg-white/10 border border-white/20 text-white font-extrabold text-xs uppercase tracking-wider hover:border-[#EDBB00] transition-all"
+          >
+            Join as Culer Member
+          </button>
+        </div>
+
+        {/* Tier 2: Soci */}
+        <div className="glass-panel-gold p-8 rounded-3xl border-2 border-[#EDBB00] space-y-6 relative overflow-hidden shadow-2xl">
+          <div className="absolute top-0 inset-x-0 h-1.5 senyera-barca-strip-animated" />
+          
+          <div className="flex justify-between items-start">
+            <div>
+              <span className="text-xs font-mono text-[#EDBB00] font-bold uppercase tracking-widest block">PREMIUM SUPPORTER TIER</span>
+              <h3 className="text-3xl font-black text-white uppercase mt-1">SOCI MEMBER</h3>
+            </div>
+            <span className="px-3 py-1 rounded-full bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-mono text-xs font-black uppercase shadow-lg">
+              VIP Official
+            </span>
+          </div>
+
+          <p className="text-xs text-gray-300 leading-relaxed">
+            The ultimate Barça Bengaluru experience. Includes official club scarf, VIP screening seats, voting rights, and gala invitations.
+          </p>
+
+          <ul className="space-y-2.5 text-xs text-gray-200 font-sans">
+            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span className="font-bold text-white">Includes Official Woven FCB Bengaluru Scarf</span></li>
+            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span>VIP Reserved Seating at El Clásico Screenings</span></li>
+            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span>Invitation to Annual Galas & BBQ Meetups</span></li>
+            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span>Voting rights in supporters club AGM decisions</span></li>
+            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span>Priority registration for inter-fan club trophies</span></li>
+          </ul>
+
+          <button
+            onClick={() => {
+              const el = document.getElementById('registration-form');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition-all shadow-xl"
+          >
+            Join as Soci Member
+          </button>
+        </div>
+      </div>
+
+      {/* Member Card Generator */}
+      <MemberCardGenerator />
 
       {/* Main Grid: Benefits + Registration Form */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
@@ -104,9 +183,9 @@ export const Join: React.FC = () => {
           </div>
         </div>
 
-        {/* Right 5 Cols: Registration Card */}
-        <div className="lg:col-span-5">
-          <div className="glass-panel-gold p-8 rounded-3xl border border-[#EDBB00]/40 text-left space-y-6 shadow-2xl">
+        {/* Right 5 Cols: Registration Form */}
+        <div id="registration-form" className="lg:col-span-5 scroll-mt-24">
+          <div className="glass-panel p-8 rounded-3xl border border-[#EDBB00]/40 text-left space-y-6 shadow-xl relative overflow-hidden">
             {!submitted ? (
               <form onSubmit={handleRegister} className="space-y-4">
                 <div className="flex items-center space-x-2 text-[#EDBB00] text-xs font-black uppercase tracking-widest">
