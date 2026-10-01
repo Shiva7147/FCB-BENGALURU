@@ -112,47 +112,47 @@ export const INITIAL_GALLERY: GalleryItem[] = [
     title: 'El Clásico Screening Victory',
     category: 'Screenings',
     imageUrl: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1200&q=80',
-    caption: 'Over 400 Bengaluru Culés erupt in celebration at Indiranagar during the 90th minute winner!',
+    caption: 'Over 500 Bengaluru Culés erupt in celebration at Indiranagar during the 90th minute winner!',
     date: 'April 2026'
   },
   {
     id: 'gal-2',
     title: 'Sunday Morning Tiki-Taka Turf Battle',
-    category: 'Turf Games',
+    category: 'Football Team',
     imageUrl: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80',
-    caption: 'Team Blaugrana vs Team Senyera at TurfPark Koramangala.',
+    caption: 'FCB Bengaluru 7v7 squad taking the pitch at TurfPark Koramangala.',
     date: 'July 2026'
   },
   {
     id: 'gal-3',
-    title: 'Chant Atmosphere Under Stadium Lights',
-    category: 'Fans',
+    title: 'Chant Atmosphere & Member Gatherings',
+    category: 'Members',
     imageUrl: 'https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1200&q=80',
-    caption: 'Banners, flags and smoke pyro during the Champions League quarter-final screening.',
+    caption: 'Bengaluru Culés arm-in-arm chanting Cant del Barça before kickoff under stadium lights.',
     date: 'March 2026'
   },
   {
     id: 'gal-4',
-    title: 'Bengaluru Culés Annual Meetup',
-    category: 'Events',
+    title: 'Core Leadership & Working Committee',
+    category: 'Team Members',
     imageUrl: 'https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=1200&q=80',
-    caption: 'Connecting FC Barcelona fans across Bengaluru for football and friendship.',
+    caption: 'The organizers behind FCB Bengaluru planning matchday screenings and galas.',
     date: 'January 2026'
   },
   {
     id: 'gal-5',
-    title: 'Champions League Midnight Madness',
+    title: 'Champions League Midnight Screening',
     category: 'Screenings',
     imageUrl: 'https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=1200&q=80',
-    caption: 'Late night screening crowd chanting "Cant del Barça" in unison.',
+    caption: 'Late night screening crowd chanting in unison at Koramangala.',
     date: 'May 2026'
   },
   {
     id: 'gal-6',
-    title: 'Weekend Fan Cup Finalists',
-    category: 'Matchdays',
+    title: 'Weekend Fan Cup Champions',
+    category: 'Football Team',
     imageUrl: 'https://images.unsplash.com/photo-1518604666860-9ed391f76460?auto=format&fit=crop&w=1200&q=80',
-    caption: 'Bengaluru Supporters Club squad taking home the Inter-Fan Club Tournament trophy!',
+    caption: 'FCB Bengaluru 5-a-side team lifting the Inter-Fan Club Tournament trophy!',
     date: 'February 2026'
   }
 ];

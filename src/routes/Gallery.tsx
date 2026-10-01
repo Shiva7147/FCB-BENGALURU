@@ -9,7 +9,7 @@ export const Gallery: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const categories = ['All', 'Screenings', 'Matchdays', 'Turf Games', 'Fans', 'Events'];
+  const categories = ['All', 'Screenings', 'Members', 'Team Members', 'Football Team'];
 
   const filteredItems = gallery.filter(item =>
     selectedCategory === 'All' ? true : item.category === selectedCategory
@@ -23,6 +23,12 @@ export const Gallery: React.FC = () => {
         title="FC Barcelona Supporters Gallery"
         subtitle="Unforgettable matchday moments, screening celebrations, pyro atmosphere, and turf battles captured in Namma Bengaluru."
       />
+
+      {/* Photo Collection Point of Contact Banner */}
+      <div className="p-4 rounded-2xl bg-white/5 border border-[#EDBB00]/40 text-center text-xs text-gray-300 max-w-2xl mx-auto flex items-center justify-center space-x-2">
+        <span className="font-bold text-[#EDBB00]">📸 Photo Submissions:</span>
+        <span>Have matchday photos or videos? Contact <strong className="text-white font-mono">Harroop (+91 99868 99287)</strong> to feature in our gallery.</span>
+      </div>
 
       {/* Category Filter Pills */}
       <div className="flex flex-wrap items-center justify-center gap-2">

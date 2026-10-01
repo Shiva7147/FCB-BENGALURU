@@ -127,6 +127,130 @@ export const Join: React.FC = () => {
       {/* Member Card Generator */}
       <MemberCardGenerator />
 
+      {/* Physical Membership Card & Kit Visual Proof */}
+      <div className="glass-panel-gold rounded-3xl p-8 sm:p-10 border border-[#EDBB00]/40 text-left space-y-6 shadow-2xl relative overflow-hidden">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
+          <div>
+            <span className="text-xs font-mono text-[#EDBB00] font-bold uppercase tracking-widest block">PHYSICAL MEMBER WELCOME KIT</span>
+            <h3 className="text-2xl font-black text-white uppercase tracking-tight">Your Physical FCB Bengaluru Member Card & Kit</h3>
+          </div>
+          <span className="px-3.5 py-1 rounded-full bg-[#004D98] text-[#EDBB00] font-mono text-xs font-bold uppercase border border-[#EDBB00]/40">
+            Delivered Across Bengaluru
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          <div className="md:col-span-6 space-y-3">
+            <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-sans">
+              Every Culer and Soci member receives a high-quality physical PVC membership card with laser-engraved member ID, valid for 1 full year. Soci members also receive the official woven FCB Bengaluru scarf and enamel badge set.
+            </p>
+            <div className="grid grid-cols-2 gap-3 text-xs font-mono pt-2">
+              <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+                <span className="text-[#EDBB00] font-bold block">✓ Physical Card</span>
+                <span className="text-gray-400 text-[10px]">PVC Card with QR gate entry</span>
+              </div>
+              <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+                <span className="text-[#EDBB00] font-bold block">✓ Official Scarf</span>
+                <span className="text-gray-400 text-[10px]">Double-layer woven scarf</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="md:col-span-6 flex justify-center">
+            <div className="relative rounded-2xl overflow-hidden border-2 border-[#EDBB00] shadow-2xl group w-full max-w-md h-52">
+              <img
+                src="/src/assets/barca_bengaluru_scarf.jpg"
+                alt="Physical Member Scarf & Kit"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A1A] via-transparent to-black/30" />
+              <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center text-xs font-mono font-bold text-white">
+                <span className="bg-[#A50044] px-2.5 py-1 rounded text-[#EDBB00]">FCB BLR MEMBER KIT</span>
+                <span className="text-[#EDBB00]">1,500+ DELIVERED</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Member Experience Section */}
+      <div className="glass-panel p-8 rounded-3xl border border-white/10 text-left space-y-6">
+        <div className="border-l-4 border-l-[#A50044] pl-4">
+          <span className="text-xs font-mono text-[#EDBB00] uppercase tracking-widest block">MEMBER LIFE</span>
+          <h3 className="text-2xl font-black text-white uppercase tracking-tight">What It Feels Like To Be A Member</h3>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="space-y-3">
+            <div className="h-44 rounded-2xl overflow-hidden border border-white/10">
+              <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80" alt="Screening atmosphere" className="w-full h-full object-cover" />
+            </div>
+            <h4 className="text-base font-black text-white uppercase">Front-Row Screening Passes</h4>
+            <p className="text-xs text-gray-300 leading-relaxed">Priority venue entry, reserved front-row seats, and discounted cover charges at Indiranagar & Koramangala hubs.</p>
+          </div>
+
+          <div className="space-y-3">
+            <div className="h-44 rounded-2xl overflow-hidden border border-white/10">
+              <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80" alt="Turf football" className="w-full h-full object-cover" />
+            </div>
+            <h4 className="text-base font-black text-white uppercase">Weekend 7v7 Turf Scrimmages</h4>
+            <p className="text-xs text-gray-300 leading-relaxed">Put on the Blaugrana jersey and play friendly tiki-taka football every Sunday morning with fellow members.</p>
+          </div>
+
+          <div className="space-y-3">
+            <div className="h-44 rounded-2xl overflow-hidden border border-white/10">
+              <img src="https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=600&q=80" alt="Annual Gala" className="w-full h-full object-cover" />
+            </div>
+            <h4 className="text-base font-black text-white uppercase">Annual Galas & BBQ Meetups</h4>
+            <p className="text-xs text-gray-300 leading-relaxed">Celebrate trophyless or treble seasons together at annual fan galas, AGM discussions, and community dinners.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Member Names Rolling Wall */}
+      <div className="p-6 rounded-3xl bg-[#09152a] border border-[#EDBB00]/40 text-left space-y-4 shadow-xl overflow-hidden">
+        <div className="flex items-center justify-between border-b border-white/10 pb-3">
+          <span className="text-xs font-mono text-[#EDBB00] font-bold uppercase tracking-widest">
+            1,500+ CURRENT BENGALURU CULÉS MEMBERS & COUNTING
+          </span>
+          <span className="text-[10px] font-mono text-gray-400">ROLLING MEMBER WALL</span>
+        </div>
+
+        <div className="overflow-hidden relative py-2">
+          <div className="animate-marquee whitespace-nowrap text-xs font-mono font-bold text-gray-300 flex space-x-6">
+            <span>Rohan S. (BLR-001)</span>
+            <span className="text-[#EDBB00]">★</span>
+            <span>Ananya H. (BLR-002)</span>
+            <span className="text-[#EDBB00]">★</span>
+            <span>Karthik V. (BLR-003)</span>
+            <span className="text-[#EDBB00]">★</span>
+            <span>Rahul M. (BLR-042)</span>
+            <span className="text-[#EDBB00]">★</span>
+            <span>Sneha R. (BLR-089)</span>
+            <span className="text-[#EDBB00]">★</span>
+            <span>Aditya N. (BLR-114)</span>
+            <span className="text-[#EDBB00]">★</span>
+            <span>Priya S. (BLR-156)</span>
+            <span className="text-[#EDBB00]">★</span>
+            <span>Vikram M. (BLR-204)</span>
+            <span className="text-[#EDBB00]">★</span>
+            <span>Varun K. (BLR-288)</span>
+            <span className="text-[#EDBB00]">★</span>
+            <span>Amogh K. (BLR-312)</span>
+            <span className="text-[#EDBB00]">★</span>
+            <span>Ajinkya P. (BLR-340)</span>
+            <span className="text-[#EDBB00]">★</span>
+            <span>Aakash R. (BLR-401)</span>
+            <span className="text-[#EDBB00]">★</span>
+            <span>Harroop S. (BLR-450)</span>
+            <span className="text-[#EDBB00]">★</span>
+            <span>Nikhil B. (BLR-512)</span>
+            <span className="text-[#EDBB00]">★</span>
+            <span>Anudeep C. (BLR-550)</span>
+          </div>
+        </div>
+      </div>
+
       {/* Main Grid: Benefits + Registration Form */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
         

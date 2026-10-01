@@ -30,7 +30,7 @@ export interface Announcement {
 export interface GalleryItem {
   id: string;
   title: string;
-  category: 'Screenings' | 'Matchdays' | 'Turf Games' | 'Fans' | 'Events';
+  category: 'Screenings' | 'Members' | 'Team Members' | 'Football Team' | 'Matchdays' | 'Turf Games' | 'Fans' | 'Events';
   imageUrl: string;
   caption: string;
   date: string;

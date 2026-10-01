@@ -5,6 +5,8 @@ import { MarqueeScroller } from '../components/MarqueeScroller';
 import { RSVPModal } from '../components/RSVPModal';
 import { MatchCountdown } from '../components/MatchCountdown';
 import { LiveMatchHype } from '../components/LiveMatchHype';
+import { PastLegendaryScreenings } from '../components/PastLegendaryScreenings';
+import { TestimonialsSection } from '../components/TestimonialsSection';
 import { useAdmin } from '../context/AdminContext';
 import { Screening } from '../types';
 import heroImage from '../assets/hero_matchday.jpg';
@@ -235,6 +237,12 @@ export const Home: React.FC = () => {
         phrases={['MÉS QUE UN CLUB', 'FORÇA BARÇA', 'BLAUGRANA BENGALURU', 'CULÉS IN BENGALURU', 'MATCH DAY']}
         variant="gold"
       />
+
+      {/* Past Legendary Screenings Showcase */}
+      <PastLegendaryScreenings />
+
+      {/* Community Testimonials (Attendee, Buyer, Member) */}
+      <TestimonialsSection />
 
       {/* 7. OUR NIGHTS EDITORIAL PHOTO WALL (Rule #7) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left space-y-6">

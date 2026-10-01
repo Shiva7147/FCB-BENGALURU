@@ -26,6 +26,26 @@ export const CoreMembers: React.FC = () => {
         subtitle="A supporters club is only as strong as the people who show up for it. Click any card for detailed profiles."
       />
 
+      {/* Volunteer for FCB Bengaluru CTA Banner */}
+      <div className="glass-panel-gold rounded-3xl p-6 sm:p-8 border border-[#EDBB00]/40 flex flex-col sm:flex-row items-center justify-between gap-6 text-left shadow-2xl">
+        <div className="space-y-1">
+          <span className="text-xs font-mono text-[#EDBB00] font-bold uppercase tracking-widest block">JOIN THE CREW</span>
+          <h3 className="text-2xl font-black text-white uppercase tracking-tight">Volunteer For FCB Bengaluru?</h3>
+          <p className="text-xs text-gray-300 leading-relaxed max-w-xl">
+            Want to help organize matchday screenings, manage turf matches, lead chants, or run social media? We are always looking for passionate Culés.
+          </p>
+        </div>
+
+        <a
+          href="https://wa.me/919777912631?text=Hi%20Aakash,%20I'd%20love%20to%20volunteer%20for%20FCB%20Bengaluru!"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#1da851] text-[#060e1a] font-extrabold text-xs uppercase tracking-wider flex items-center space-x-2 transition-all shadow-xl shrink-0"
+        >
+          <span>Chat With Aakash on WhatsApp</span>
+        </a>
+      </div>
+
       {/* Collectible Trading Cards Grid (Rules #8 & #9) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {coreMembers.map((member) => {
