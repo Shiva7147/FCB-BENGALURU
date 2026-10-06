@@ -334,23 +334,37 @@ export const AdminPanel: React.FC = () => {
                   <input
                     type="text"
                     required
-                    placeholder=" इंडिरानगर Screening Pyro Night"
+                    placeholder="Indiranagar Screening Pyro Night"
                     value={galleryForm.title}
                     onChange={e => setGalleryForm({ ...galleryForm, title: e.target.value })}
                     className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-gray-300 uppercase mb-1">Image URL *</label>
-                  <input
-                    type="url"
-                    required
-                    placeholder="https://images.unsplash.com/..."
-                    value={galleryForm.imageUrl}
-                    onChange={e => setGalleryForm({ ...galleryForm, imageUrl: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm"
-                  />
+                  <label className="block text-xs font-bold text-gray-300 uppercase mb-1">Gallery Category *</label>
+                  <select
+                    value={galleryForm.category}
+                    onChange={e => setGalleryForm({ ...galleryForm, category: e.target.value as any })}
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#060e1a] border border-white/10 text-white text-sm"
+                  >
+                    <option value="Screenings">Screenings</option>
+                    <option value="Members">Members</option>
+                    <option value="Team Members">Team Members</option>
+                    <option value="Football Team">Football Team</option>
+                  </select>
                 </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-300 uppercase mb-1">Image URL *</label>
+                <input
+                  type="url"
+                  required
+                  placeholder="https://images.unsplash.com/..."
+                  value={galleryForm.imageUrl}
+                  onChange={e => setGalleryForm({ ...galleryForm, imageUrl: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm"
+                />
               </div>
 
               <div>
