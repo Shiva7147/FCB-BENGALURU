@@ -70,7 +70,16 @@ export const loadStoredProducts = (): Product[] => {
       localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(SEED_PRODUCTS));
       return SEED_PRODUCTS;
     }
-    return JSON.parse(raw);
+    const parsed: Product[] = JSON.parse(raw);
+    // Keep scarf product images up-to-date with official Cloudinary gallery
+    const updated = parsed.map(p => {
+      if (p.id === 'prod-1') {
+        const seedScarf = SEED_PRODUCTS.find(sp => sp.id === 'prod-1');
+        return seedScarf ? { ...p, imageUrl: seedScarf.imageUrl, images: seedScarf.images } : p;
+      }
+      return p;
+    });
+    return updated;
   } catch {
     return SEED_PRODUCTS;
   }

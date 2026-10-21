@@ -110,16 +110,15 @@ export const CoreMembers: React.FC = () => {
                 </div>
               </div>
 
-              {/* Large Portrait Image with fallback */}
-              <div className="relative w-36 h-36 mx-auto mt-2 rounded-2xl overflow-hidden border-2 border-[#EDBB00]/60 shadow-xl bg-black/40">
+              {/* Portrait Image with perfect framing */}
+              <div className="relative w-36 h-36 mx-auto mt-2 rounded-2xl overflow-hidden border-2 border-[#EDBB00]/60 shadow-xl bg-black/50">
                 <img
                   src={member.imageUrl}
                   alt={member.name}
                   onError={(e) => {
-                    // Fallback to high quality avatar if drive link is restricted
                     (e.target as HTMLImageElement).src = `https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80`;
                   }}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
 
@@ -180,8 +179,8 @@ export const CoreMembers: React.FC = () => {
             </button>
 
             <div className="flex items-center space-x-4">
-              <div className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-[#EDBB00] shrink-0">
-                <img src={selectedMember.imageUrl} alt={selectedMember.name} className="w-full h-full object-cover" />
+              <div className="w-24 h-24 rounded-2xl overflow-hidden border-2 border-[#EDBB00] shrink-0 bg-black/50 shadow-lg">
+                <img src={selectedMember.imageUrl} alt={selectedMember.name} className="w-full h-full object-cover object-top" />
               </div>
               <div>
                 <h3 className="text-2xl font-black text-white uppercase">{selectedMember.name}</h3>

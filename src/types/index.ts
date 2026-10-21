@@ -82,6 +82,7 @@ export interface Product {
   originalPrice?: number;
   description: string;
   imageUrl: string;
+  images?: string[]; // Multiple photos for gallery carousel
   category: 'Apparel' | 'Accessories' | 'Collectibles';
   sizes: string[];
   inStock: boolean;

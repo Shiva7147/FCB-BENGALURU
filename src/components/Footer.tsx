@@ -37,10 +37,12 @@ export const Footer: React.FC = () => {
             {/* Col 1 & 2: Branding & Identity */}
             <div className="lg:col-span-2 space-y-4 text-left">
               <div className="flex items-center space-x-3">
-                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#004D98] via-[#060e1a] to-[#A50044] p-0.5 border border-[#EDBB00] shadow-xl">
-                  <div className="w-full h-full rounded-full bg-[#060e1a] flex items-center justify-center">
-                    <Shield className="w-5 h-5 text-[#EDBB00]" />
-                  </div>
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#004D98] via-[#060e1a] to-[#A50044] p-0.5 border border-[#EDBB00] shadow-xl flex items-center justify-center shrink-0 overflow-hidden">
+                  <img
+                    src="https://res.cloudinary.com/dy6mwk08r/image/upload/v1792571429/fcb_logo_png_4x_vbndt1.png"
+                    alt="FCB Bengaluru Official Crest"
+                    className="w-full h-full object-contain p-0.5"
+                  />
                 </div>
                 <div>
                   <h3 className="text-base font-black text-white uppercase tracking-wider">

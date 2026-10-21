@@ -59,26 +59,17 @@ export const EmblemBadge: React.FC<EmblemBadgeProps> = ({ size = 'md', className
 
         {/* Inner Crest Core */}
         <div className="absolute inset-0 flex items-center justify-center p-[18%]">
-          <div className="w-full h-full rounded-full bg-gradient-to-br from-[#003B73] via-[#09152b] to-[#7A0032] p-1 shadow-2xl border border-[#EDBB00]/40 flex flex-col items-center justify-center relative overflow-hidden group">
+          <div className="w-full h-full rounded-full bg-gradient-to-br from-[#003B73] via-[#09152b] to-[#7A0032] p-2 shadow-2xl border border-[#EDBB00]/60 flex flex-col items-center justify-center relative overflow-hidden group">
             {/* Background Senyera stripes overlay */}
             <div className="absolute top-0 right-0 left-0 h-1.5 senyera-accent opacity-90" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#EDBB00]/10 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#EDBB00]/15 via-transparent to-transparent pointer-events-none" />
 
-            {/* FCB Center Text */}
-            <span className="text-[#EDBB00] font-black text-xl sm:text-3xl md:text-4xl tracking-tighter drop-shadow-[0_2px_10px_rgba(237,187,0,0.5)] leading-none font-serif">
-              FCB
-            </span>
-            <span className="text-white text-[8px] sm:text-[10px] tracking-widest font-extrabold uppercase mt-0.5 text-center px-1 border-y border-[#EDBB00]/30 py-0.5">
-              BARÇA BENGALURU
-            </span>
-
-            {/* Gold Football Icon / Accent */}
-            <div className="mt-1 flex items-center space-x-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#EDBB00] animate-ping" />
-              <span className="text-[7px] sm:text-[9px] text-gray-300 uppercase tracking-wider font-semibold">
-                EST. BENGALURU
-              </span>
-            </div>
+            {/* Official FCB Bengaluru Crest */}
+            <img
+              src="https://res.cloudinary.com/dy6mwk08r/image/upload/v1792571429/fcb_logo_png_4x_vbndt1.png"
+              alt="Official FCB Bengaluru Crest"
+              className="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain drop-shadow-[0_4px_16px_rgba(237,187,0,0.6)] group-hover:scale-105 transition-transform duration-300"
+            />
           </div>
         </div>
       </div>

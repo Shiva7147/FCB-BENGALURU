@@ -121,8 +121,12 @@ export const MemberCardGenerator: React.FC = () => {
             {/* Card Header */}
             <div className="flex items-center justify-between border-b border-[#EDBB00]/30 pb-4 relative z-10">
               <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 rounded-full bg-[#004D98] border border-[#EDBB00] flex items-center justify-center">
-                  <Shield className="w-4 h-4 text-[#EDBB00]" />
+                <div className="w-9 h-9 rounded-full bg-[#004D98] border border-[#EDBB00] flex items-center justify-center p-0.5 shrink-0 overflow-hidden shadow-md">
+                  <img
+                    src="https://res.cloudinary.com/dy6mwk08r/image/upload/v1792571429/fcb_logo_png_4x_vbndt1.png"
+                    alt="FCB Crest"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div>
                   <span className="text-xs font-black text-white uppercase tracking-wider block leading-none">

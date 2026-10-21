@@ -285,15 +285,15 @@ export const Join: React.FC = () => {
           </div>
 
           <div className="md:col-span-6 flex justify-center">
-            <div className="relative rounded-2xl overflow-hidden border-2 border-[#EDBB00] shadow-2xl group w-full max-w-md h-52">
+            <div className="relative rounded-2xl overflow-hidden border-2 border-[#EDBB00] shadow-2xl group w-full max-w-md aspect-[3/2] bg-black/40">
               <img
-                src="/src/assets/barca_bengaluru_scarf.jpg"
-                alt="Physical Member Scarf & Kit"
+                src="https://res.cloudinary.com/dy6mwk08r/image/upload/v1792571429/Scarf_1_ubozbt.jpg"
+                alt="Official FCB Bengaluru Woven Scarf & Physical Member Kit"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A1A] via-transparent to-black/30" />
-              <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center text-xs font-mono font-bold text-white">
-                <span className="bg-[#A50044] px-2.5 py-1 rounded text-[#EDBB00]">FCB BLR MEMBER KIT</span>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A1A] via-transparent to-black/30 pointer-events-none" />
+              <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center text-xs font-mono font-bold text-white z-10">
+                <span className="bg-[#A50044] px-2.5 py-1 rounded text-[#EDBB00]">OFFICIAL WOVEN SCARF</span>
                 <span className="text-[#EDBB00]">1,500+ DELIVERED</span>
               </div>
             </div>

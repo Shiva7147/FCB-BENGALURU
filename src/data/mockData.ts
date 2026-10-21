@@ -300,8 +300,15 @@ export const INITIAL_PRODUCTS: Product[] = [
     id: 'prod-1',
     name: 'FCB Bengaluru Scarf',
     price: 799,
+    originalPrice: 999,
     description: 'Crafted in official Barça Blaugrana — the deep blue and rich garnet red that defines everything we stand for. Double-layer knit, 160cm × 20cm. Woven "FCB Bengaluru" branding on one end, classic Barça stripes on the reverse. Worn at every screening. Raised at every goal. Tied to every memory.',
-    imageUrl: '/src/assets/barca_bengaluru_scarf.jpg',
+    imageUrl: 'https://res.cloudinary.com/dy6mwk08r/image/upload/v1792571429/Scarf_1_ubozbt.jpg',
+    images: [
+      'https://res.cloudinary.com/dy6mwk08r/image/upload/v1792571429/Scarf_1_ubozbt.jpg',
+      'https://res.cloudinary.com/dy6mwk08r/image/upload/v1792571430/Scarf_2_y4gq17.jpg',
+      'https://res.cloudinary.com/dy6mwk08r/image/upload/v1792571429/Scarf_3_cabp5y.jpg',
+      'https://res.cloudinary.com/dy6mwk08r/image/upload/v1792571429/Scarf_4_qrjsmp.jpg'
+    ],
     category: 'Accessories',
     sizes: ['One size (160cm × 20cm)'],
     inStock: true,
@@ -445,7 +452,7 @@ export const INITIAL_CORE_MEMBERS: CoreMember[] = [
     role: 'Screening Admin',
     department: 'Working Committee',
     bio: 'Coordinates on-ground screening sound systems, entry gates, RSVP lists, and match night logistics at Indiranagar & Koramangala.',
-    imageUrl: 'https://lh3.googleusercontent.com/d/1tUo90FQJIdvz8E3G42JxkMcxiVDO9Zs6',
+    imageUrl: 'https://res.cloudinary.com/dy6mwk08r/image/upload/v1792571433/Vineet_ewenol.jpg',
     favoritePlayer: 'Marc-André ter Stegen',
     socials: {
       instagram: 'https://www.instagram.com/_vinext_?stkn=ZXlmeHNzN2p6a3N4&utm_source=ig_contact_invite'
@@ -457,7 +464,7 @@ export const INITIAL_CORE_MEMBERS: CoreMember[] = [
     role: 'Screening Admin',
     department: 'Working Committee',
     bio: 'Screening administrator managing crowd seating, audio-visual display setups, and match night security for 300+ fan gatherings.',
-    imageUrl: 'https://lh3.googleusercontent.com/d/1_tbczQQsYL-gbc7Rnyz3jpKp0FvppY1P',
+    imageUrl: 'https://res.cloudinary.com/dy6mwk08r/image/upload/v1792571430/Criston_d8e9e2.jpg',
     favoritePlayer: 'Gavi',
     socials: {
       instagram: 'https://www.instagram.com/criston_ab?stkn=MTczYWcxbGJzdndheQ%3D%3D&utm_source=qr'
@@ -481,7 +488,7 @@ export const INITIAL_CORE_MEMBERS: CoreMember[] = [
     role: 'Screening Admin',
     department: 'Working Committee',
     bio: 'Screening gate marshal, volunteer liaison, and chant coordinator keeping the atmosphere electric during all 90 minutes.',
-    imageUrl: 'https://lh3.googleusercontent.com/d/1USQawItEBhiXPMyejeI4AhLtekT_EcZu',
+    imageUrl: 'https://res.cloudinary.com/dy6mwk08r/image/upload/v1792571430/Sajjad_Ali_zkyzip.jpg',
     favoritePlayer: 'Raphinha',
     socials: {
       instagram: 'https://www.instagram.com/sajj__ali?stkn=MWQxZTQxMTZ2bjZ0Mg=='

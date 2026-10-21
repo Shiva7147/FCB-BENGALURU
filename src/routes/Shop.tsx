@@ -59,12 +59,12 @@ export const Shop: React.FC = () => {
             className="glass-panel rounded-3xl overflow-hidden border border-white/10 hover:border-[#EDBB00]/60 transition-all text-left space-y-4 shadow-xl flex flex-col justify-between group"
           >
             <div>
-              {/* Product Image */}
-              <div className="relative h-64 w-full overflow-hidden bg-black/40">
+              {/* Product Image - Exact 3:2 Aspect Ratio */}
+              <div className="relative aspect-[3/2] w-full overflow-hidden bg-black/40">
                 <img
                   src={prod.imageUrl}
                   alt={prod.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 {/* Status Badges */}
                 <div className="absolute top-4 left-4 flex flex-col gap-1.5">
@@ -79,6 +79,13 @@ export const Shop: React.FC = () => {
                     </span>
                   )}
                 </div>
+
+                {/* Multiple Images Indicator */}
+                {prod.images && prod.images.length > 1 && (
+                  <div className="absolute bottom-4 left-4 px-2.5 py-1 rounded-full bg-black/70 border border-white/20 text-[10px] font-mono text-[#EDBB00] font-bold backdrop-blur-sm">
+                    {prod.images.length} Photos Gallery
+                  </div>
+                )}
                 
                 {/* Quick View Button */}
                 <button

@@ -52,10 +52,12 @@ export const Navbar: React.FC = () => {
             
             {/* Brand Logo & Name */}
             <Link to="/" className="flex items-center space-x-3 group shrink-0">
-              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-[#004D98] via-[#060e1a] to-[#A50044] p-0.5 border border-[#EDBB00]/80 shadow-lg group-hover:scale-105 transition-transform">
-                <div className="w-full h-full rounded-full bg-[#060e1a] flex items-center justify-center">
-                  <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-[#EDBB00]" />
-                </div>
+              <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full p-0.5 bg-gradient-to-br from-[#004D98] via-[#060e1a] to-[#A50044] border border-[#EDBB00] shadow-xl group-hover:scale-105 transition-transform shrink-0 flex items-center justify-center overflow-hidden">
+                <img
+                  src="https://res.cloudinary.com/dy6mwk08r/image/upload/v1792571429/fcb_logo_png_4x_vbndt1.png"
+                  alt="FCB Bengaluru Official Crest"
+                  className="w-full h-full object-contain p-0.5"
+                />
               </div>
               <div className="flex flex-col text-left">
                 <span className="font-black text-white text-xs sm:text-sm tracking-wider uppercase leading-none">

@@ -81,7 +81,16 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [coreMembers, setCoreMembers] = useState<CoreMember[]>(() => {
     try {
       const data = localStorage.getItem(STORAGE_KEYS.CORE_MEMBERS);
-      return data ? JSON.parse(data) : INITIAL_CORE_MEMBERS;
+      if (!data) return INITIAL_CORE_MEMBERS;
+      const parsed: CoreMember[] = JSON.parse(data);
+      // Synchronize updated official Cloudinary member photos
+      return parsed.map(m => {
+        const init = INITIAL_CORE_MEMBERS.find(im => im.id === m.id);
+        if (init && (m.name.includes('Vineet') || m.name.includes('Criston') || m.name.includes('Sajjad'))) {
+          return { ...m, imageUrl: init.imageUrl };
+        }
+        return m;
+      });
     } catch {
       return INITIAL_CORE_MEMBERS;
     }
