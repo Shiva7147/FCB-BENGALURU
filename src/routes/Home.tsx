@@ -38,8 +38,8 @@ export const Home: React.FC = () => {
           </div>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white uppercase tracking-tight leading-[1.05] max-w-4xl mx-auto drop-shadow-2xl font-mono">
-            MÉS QUE UN CLUB <br />
-            <span className="text-gold-gradient font-sans">EXPERIENCE MATCH DAY UNDER THE LIGHTS</span>
+            NAMMA KANNASU, NAMMA CLUB <br />
+            <span className="text-gold-gradient font-sans">MÉS QUE UN CLUB UNDER THE LIGHTS</span>
           </h1>
 
           <p className="text-base sm:text-xl text-gray-200 max-w-3xl mx-auto font-medium leading-relaxed drop-shadow-md">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, CheckCircle, Ticket, MapPin, Calendar, Clock, Users } from 'lucide-react';
+import { X, CheckCircle, Ticket, MapPin, Calendar, Clock, Users, QrCode } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { Screening } from '../types';
 import { useAdmin } from '../context/AdminContext';
@@ -154,26 +154,52 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ screening, onClose }) => {
               </button>
             </form>
           ) : (
-            <div className="py-6 text-center space-y-4">
-              <div className="w-16 h-16 rounded-full bg-[#EDBB00]/20 text-[#EDBB00] border border-[#EDBB00] flex items-center justify-center mx-auto animate-bounce">
-                <CheckCircle className="w-10 h-10" />
+            <div className="py-4 text-center space-y-4">
+              <div className="w-14 h-14 rounded-full bg-[#EDBB00]/20 text-[#EDBB00] border border-[#EDBB00] flex items-center justify-center mx-auto">
+                <CheckCircle className="w-8 h-8" />
               </div>
               <h4 className="text-2xl font-black text-white uppercase tracking-tight">
-                RSVP Confirmed!
+                Entry Ticket Confirmed!
               </h4>
-              <p className="text-sm text-gray-300 max-w-sm mx-auto">
-                Visca el Barça, <span className="text-[#EDBB00] font-bold">{formData.name}</span>! Your entry pass for {formData.guests} guest(s) has been registered.
+              <p className="text-xs text-gray-300 max-w-sm mx-auto">
+                Visca el Barça, <span className="text-[#EDBB00] font-bold">{formData.name}</span>! Present this QR pass at the venue entrance.
               </p>
-              
-              <div className="p-4 rounded-xl bg-[#004D98]/20 border border-[#EDBB00]/30 text-xs text-gray-300 text-left space-y-1 font-mono">
-                <p><strong className="text-[#EDBB00]">Match:</strong> {screening.match}</p>
-                <p><strong className="text-[#EDBB00]">Venue:</strong> {screening.venue}</p>
-                <p><strong className="text-[#EDBB00]">Entry Fee:</strong> {screening.entryFee || 'Pay at venue'}</p>
+
+              {/* Digital Matchday Ticket Pass with QR */}
+              <div className="p-4 rounded-2xl bg-[#09152b] border border-[#EDBB00]/50 text-left space-y-3 relative overflow-hidden shadow-xl">
+                <div className="absolute top-0 inset-x-0 h-1 senyera-accent" />
+                <div className="flex items-center justify-between border-b border-white/10 pb-2">
+                  <span className="text-[10px] font-mono font-bold text-[#EDBB00] uppercase">BLAUGRANA GATE PASS</span>
+                  <span className="text-[10px] font-mono text-gray-400">REF: FCB-BLR-{Math.floor(10000 + Math.random() * 90000)}</span>
+                </div>
+                
+                <div className="flex items-center justify-between gap-4">
+                  <div className="space-y-1 text-xs text-gray-200 font-mono">
+                    <p className="font-sans font-black text-white text-sm uppercase">{screening.match}</p>
+                    <p className="text-gray-400 text-[11px]">{screening.venue}</p>
+                    <p className="text-gray-400 text-[11px]">{screening.date} · {screening.time}</p>
+                    <p className="text-[#EDBB00] font-bold text-[11px]">Pass for {formData.guests} Culé(s)</p>
+                  </div>
+
+                  <div className="p-2 rounded-xl bg-white text-[#060e1a] shrink-0 flex flex-col items-center">
+                    <QrCode className="w-12 h-12" />
+                    <span className="text-[8px] font-mono font-black mt-0.5">SCAN ENTRY</span>
+                  </div>
+                </div>
               </div>
+
+              <a
+                href={`https://wa.me/919340923809?text=Hi%20Aryaman,%20I%20have%20RSVP'd%20for%20${encodeURIComponent(screening.match)}.%20Name:%20${encodeURIComponent(formData.name)},%20Guests:%20${formData.guests}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 rounded-xl bg-[#25D366] text-[#060e1a] font-extrabold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 hover:brightness-110 shadow-md"
+              >
+                <span>Send Confirmation on WhatsApp</span>
+              </a>
 
               <button
                 onClick={onClose}
-                className="px-6 py-2.5 rounded-xl bg-white/10 text-white font-bold text-xs uppercase tracking-wider hover:bg-white/20 transition-all"
+                className="px-6 py-2 rounded-xl bg-white/10 text-white font-bold text-xs uppercase tracking-wider hover:bg-white/20 transition-all"
               >
                 Done
               </button>

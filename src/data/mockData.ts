@@ -14,7 +14,10 @@ export const INITIAL_SCREENINGS: Screening[] = [
     description: 'The ultimate El Clásico screening experience in Namma Bengaluru! Huge screens, quad stereo surround, chant leaders, stadium lighting, merchandise stalls and exclusive Culé giveaways.',
     isUpcoming: true,
     entryFee: '₹250 (Includes ₹150 cover redeemable on F&B)',
-    rsvpCount: 342
+    rsvpCount: 342,
+    capacity: 500,
+    phase: 'Phase 2 (General)',
+    memberDiscount: '10% off for Culer / 25% off for Soci'
   },
   {
     id: 'sc-2',
@@ -29,7 +32,10 @@ export const INITIAL_SCREENINGS: Screening[] = [
     description: 'Champions League night under the lights! Midnight screening for the die-hard Culés in Bangalore. High energy, collective chants and special Blaugrana mocktails.',
     isUpcoming: true,
     entryFee: '₹200 (Includes welcome drink)',
-    rsvpCount: 189
+    rsvpCount: 189,
+    capacity: 250,
+    phase: 'Phase 1 (Early Bird)',
+    memberDiscount: '10% off for Culer / 25% off for Soci'
   },
   {
     id: 'sc-3',
@@ -44,7 +50,10 @@ export const INITIAL_SCREENINGS: Screening[] = [
     description: 'Crucial top-4 battle! Gather with hundreds of Bengaluru Blaugrana supporters at the heart of Church Street.',
     isUpcoming: true,
     entryFee: '₹200 cover charge',
-    rsvpCount: 154
+    rsvpCount: 154,
+    capacity: 200,
+    phase: 'Phase 1 (Early Bird)',
+    memberDiscount: '10% off for Culer / 25% off for Soci'
   },
   {
     id: 'sc-4',
@@ -59,7 +68,8 @@ export const INITIAL_SCREENINGS: Screening[] = [
     description: 'Cup Final screening! 400+ Culés sang Cant del Barça as we lifted the trophy in thrilling fashion.',
     isUpcoming: false,
     entryFee: '₹200',
-    rsvpCount: 420
+    rsvpCount: 420,
+    capacity: 400
   }
 ];
 
@@ -225,6 +235,24 @@ export const INITIAL_CHANTS: Chant[] = [
 
 export const INITIAL_ACHIEVEMENTS: Achievement[] = [
   {
+    id: 'ach-01',
+    title: '3,000+ Fans Screening for World Cup Final',
+    year: '2026 Milestone',
+    category: 'Global',
+    description: '3,000+ football lovers brought together for the grand final screening in Bengaluru — unmatched atmosphere in the city.',
+    trophiesCount: 3000,
+    imageUrl: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'ach-02',
+    title: '500+ Culés El Clásico Screening',
+    year: 'Record Watch Party',
+    category: 'Domestic',
+    description: '500+ Culés screaming Cant del Barça under one roof — the biggest FC Barcelona watch party in India.',
+    trophiesCount: 500,
+    imageUrl: 'https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=800&q=80'
+  },
+  {
     id: 'ach-1',
     title: '5 UEFA Champions League Titles',
     year: '1992, 2006, 2009, 2011, 2015',
@@ -316,51 +344,171 @@ export const INITIAL_PRODUCTS: Product[] = [
 export const INITIAL_CORE_MEMBERS: CoreMember[] = [
   {
     id: 'cm-1',
-    name: 'Rohan Sen',
-    role: 'Club President & Lead Founder',
-    bio: 'Die-hard Culé since 2004. Oversees club partnerships, official member relations, and screening venue agreements across Bengaluru.',
+    name: 'Nikhil Dewasi',
+    role: 'Founder',
+    department: 'Core Team',
+    bio: 'Founder of FCB Bengaluru. Instrumental in establishing the supporters club in 2021 and driving official partnerships, brand strategy, and fan community growth across India.',
     imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
-    favoritePlayer: 'Ronaldinho & Lionel Messi',
+    favoritePlayer: 'Lionel Messi',
     socials: {
-      instagram: 'https://instagram.com',
-      twitter: 'https://twitter.com',
-      whatsapp: 'https://wa.me/919876543210'
+      instagram: 'https://www.instagram.com/fcbbengaluru',
+      twitter: 'https://x.com/fcb_bengaluru'
     }
   },
   {
     id: 'cm-2',
-    name: 'Ananya Hegde',
-    role: 'Screenings & Events Coordinator',
-    bio: 'Manages matchday screenings, audio-visual setups, venue booking, and gate ticketing for 300+ fan gatherings.',
-    imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80',
-    favoritePlayer: 'Xavi Hernández',
+    name: 'Rakshin',
+    role: 'Co-Founder',
+    department: 'Core Team',
+    bio: 'Co-Founder of FCB Bengaluru. Passionate Culé building community foundations, event culture, and fan experiences from the earliest living room screenings.',
+    imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80',
+    favoritePlayer: 'Ronaldinho',
     socials: {
-      instagram: 'https://instagram.com',
-      twitter: 'https://twitter.com'
+      instagram: 'https://www.instagram.com/fcbbengaluru'
     }
   },
   {
     id: 'cm-3',
-    name: 'Karthik Varma',
-    role: 'Turf Football Lead & Coach',
-    bio: 'Coordinates weekend 7v7 games, inter-fan club tournaments, and tiki-taka tactical sessions for Bengaluru Culés.',
-    imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80',
-    favoritePlayer: 'Andrés Iniesta',
+    name: 'Harroop Singh Gala',
+    role: 'CEO',
+    department: 'Core Team',
+    bio: 'Leads club operations, venue agreements, photo & media collection, and general community relations for all official FCB Bengaluru events.',
+    imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80',
+    favoritePlayer: 'Xavi Hernández',
     socials: {
-      instagram: 'https://instagram.com',
-      whatsapp: 'https://wa.me/919876543211'
+      whatsapp: 'https://wa.me/919986899287'
     }
   },
   {
     id: 'cm-4',
-    name: 'Priya Sundaram',
-    role: 'Community & Content Director',
-    bio: 'Leads social media broadcasts, match previews, chant leader coordination, and Bengaluru fan stories.',
-    imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80',
-    favoritePlayer: 'Pedri & Lamine Yamal',
+    name: 'Aakash Sharma',
+    role: 'CMO',
+    department: 'Core Team',
+    bio: 'Leads marketing, volunteer onboarding, social broadcast channels, and fan acquisition campaigns across Bengaluru and online channels.',
+    imageUrl: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=600&q=80',
+    favoritePlayer: 'Andrés Iniesta',
     socials: {
-      instagram: 'https://instagram.com',
-      twitter: 'https://twitter.com'
+      whatsapp: 'https://wa.me/919777912631'
+    }
+  },
+  {
+    id: 'cm-5',
+    name: 'Aryaman Kummamuru',
+    role: 'Screening and Membership Head',
+    department: 'Core Team',
+    bio: 'Heads screening ticketing operations, member tier allocations (Culer & Soci), gate access, and onboarding for 1,500+ Bengaluru Culés.',
+    imageUrl: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80',
+    favoritePlayer: 'Sergio Busquets',
+    socials: {
+      whatsapp: 'https://wa.me/919340923809'
+    }
+  },
+  {
+    id: 'cm-6',
+    name: 'Anudeep Challa',
+    role: 'Financial Advisor & Web Operations',
+    department: 'Core Team',
+    bio: 'Manages club accounts, financial forecasting, merchandise treasury, and website development operations for FCB Bengaluru.',
+    imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80',
+    favoritePlayer: 'Carles Puyol',
+    socials: {
+      whatsapp: 'https://wa.me/917993866087'
+    }
+  },
+  {
+    id: 'cm-7',
+    name: 'Ajinkya Gaikar',
+    role: 'Content Head',
+    department: 'Working Committee',
+    bio: 'Oversees matchday editorial previews, social storytelling, chant scripts, and video content for Bengaluru Culés broadcasts.',
+    imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80',
+    favoritePlayer: 'Pedri',
+    socials: {
+      instagram: 'https://www.instagram.com/fcbbengaluru'
+    }
+  },
+  {
+    id: 'cm-8',
+    name: 'Jolan D’Souza',
+    role: 'Graphics Head',
+    department: 'Working Committee',
+    bio: 'Creates matchday screening posters, merchandise artwork, digital badges, and official visual identity assets for FCB Bengaluru.',
+    imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80',
+    favoritePlayer: 'Lamine Yamal',
+    socials: {
+      instagram: 'https://www.instagram.com/fcbbengaluru'
+    }
+  },
+  {
+    id: 'cm-9',
+    name: 'Vineet Raval',
+    role: 'Screening Admin',
+    department: 'Working Committee',
+    bio: 'Coordinates on-ground screening sound systems, entry gates, RSVP lists, and match night logistics at Indiranagar & Koramangala.',
+    imageUrl: 'https://lh3.googleusercontent.com/d/1tUo90FQJIdvz8E3G42JxkMcxiVDO9Zs6',
+    favoritePlayer: 'Marc-André ter Stegen',
+    socials: {
+      instagram: 'https://www.instagram.com/_vinext_?stkn=ZXlmeHNzN2p6a3N4&utm_source=ig_contact_invite'
+    }
+  },
+  {
+    id: 'cm-10',
+    name: 'Criston Barboza',
+    role: 'Screening Admin',
+    department: 'Working Committee',
+    bio: 'Screening administrator managing crowd seating, audio-visual display setups, and match night security for 300+ fan gatherings.',
+    imageUrl: 'https://lh3.googleusercontent.com/d/1_tbczQQsYL-gbc7Rnyz3jpKp0FvppY1P',
+    favoritePlayer: 'Gavi',
+    socials: {
+      instagram: 'https://www.instagram.com/criston_ab?stkn=MTczYWcxbGJzdndheQ%3D%3D&utm_source=qr'
+    }
+  },
+  {
+    id: 'cm-11',
+    name: 'Shubham',
+    role: 'Screening Admin',
+    department: 'Working Committee',
+    bio: 'Assists screening operations, ticketing verification, partner venue communications, and member check-ins.',
+    imageUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80',
+    favoritePlayer: 'Robert Lewandowski',
+    socials: {
+      instagram: 'https://www.instagram.com/fcbbengaluru'
+    }
+  },
+  {
+    id: 'cm-12',
+    name: 'Sajjad Ali',
+    role: 'Screening Admin',
+    department: 'Working Committee',
+    bio: 'Screening gate marshal, volunteer liaison, and chant coordinator keeping the atmosphere electric during all 90 minutes.',
+    imageUrl: 'https://lh3.googleusercontent.com/d/1USQawItEBhiXPMyejeI4AhLtekT_EcZu',
+    favoritePlayer: 'Raphinha',
+    socials: {
+      instagram: 'https://www.instagram.com/sajj__ali?stkn=MWQxZTQxMTZ2bjZ0Mg=='
+    }
+  },
+  {
+    id: 'cm-13',
+    name: 'Pranav Jhanvar',
+    role: 'Content Admin',
+    department: 'Working Committee',
+    bio: 'Manages live match tweets, screening stories, member highlights, and digital fan engagement for FCB Bengaluru.',
+    imageUrl: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=600&q=80',
+    favoritePlayer: 'Frenkie de Jong',
+    socials: {
+      twitter: 'https://x.com/fcb_bengaluru'
+    }
+  },
+  {
+    id: 'cm-14',
+    name: 'Amogh',
+    role: 'Football Ops Head',
+    department: 'Football & Operations',
+    bio: 'Leads FCB Bengaluru weekend turf matches, 7v7 tiki-taka sessions, inter-fan club tournaments, and team roster management.',
+    imageUrl: 'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&w=600&q=80',
+    favoritePlayer: 'Jules Koundé',
+    socials: {
+      instagram: 'https://www.instagram.com/fcbbengaluru'
     }
   }
 ];

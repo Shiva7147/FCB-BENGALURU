@@ -13,6 +13,9 @@ export interface Screening {
   isUpcoming: boolean;
   entryFee?: string;
   rsvpCount: number;
+  capacity?: number;
+  phase?: 'Phase 1 (Early Bird)' | 'Phase 2 (General)' | 'Phase 3 (Final Call)';
+  memberDiscount?: string;
 }
 
 export interface Announcement {
@@ -40,6 +43,7 @@ export interface CoreMember {
   id: string;
   name: string;
   role: string;
+  department?: 'Core Team' | 'Working Committee' | 'Football & Operations';
   bio: string;
   imageUrl: string;
   favoritePlayer: string;

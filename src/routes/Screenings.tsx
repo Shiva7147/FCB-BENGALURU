@@ -134,6 +134,22 @@ export const Screenings: React.FC = () => {
                     <span><strong>Entry Cover:</strong> {sc.entryFee}</span>
                   </div>
                 )}
+                {sc.phase && (
+                  <div className="flex items-center justify-between pt-1">
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#004D98]/50 border border-[#EDBB00]/40 text-[#EDBB00] text-[10px] font-mono font-bold uppercase">
+                      {sc.phase}
+                    </span>
+                    {sc.capacity && (
+                      <span className="text-[11px] font-mono text-gray-300">
+                        {Math.max(0, sc.capacity - sc.rsvpCount)} / {sc.capacity} Seats Left
+                      </span>
+                    )}
+                  </div>
+                )}
+                <div className="p-2 rounded-xl bg-white/5 border border-white/10 text-[10px] text-gray-300 font-mono flex items-center justify-between">
+                  <span className="text-[#EDBB00] font-bold">MEMBER PERK:</span>
+                  <span>10% off for Culer · 25% off for Soci</span>
+                </div>
               </div>
 
               {/* Action Buttons */}

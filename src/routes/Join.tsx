@@ -13,7 +13,8 @@ export const Join: React.FC = () => {
     phone: '',
     email: '',
     locality: 'Indiranagar',
-    favPlayer: ''
+    favPlayer: '',
+    tier: 'Culer Member (₹399)'
   });
 
   const handleRegister = (e: React.FormEvent) => {
@@ -50,77 +51,117 @@ export const Join: React.FC = () => {
         subtitle="Connect with Barcelona fans in Bengaluru for match screenings, turf games, chants, and unforgettable matchday nights."
       />
 
-      {/* Membership Tiers Comparison (Culer vs Soci - Section 2 Client Document) */}
+      {/* Membership Tiers Comparison (Culer vs Soci - Section 8 Client Document) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
         {/* Tier 1: Culer */}
-        <div className="glass-panel p-8 rounded-3xl border border-white/10 space-y-6 relative overflow-hidden">
-          <div className="flex justify-between items-start">
-            <div>
-              <span className="text-xs font-mono text-[#EDBB00] font-bold uppercase tracking-widest block">COMMUNITY TIER</span>
-              <h3 className="text-3xl font-black text-white uppercase mt-1">CULER MEMBER</h3>
+        <div className="glass-panel p-8 rounded-3xl border border-white/10 space-y-6 relative overflow-hidden flex flex-col justify-between">
+          <div>
+            <div className="flex justify-between items-start">
+              <div>
+                <span className="text-xs font-mono text-[#EDBB00] font-bold uppercase tracking-widest block">BASIC MEMBERSHIP</span>
+                <h3 className="text-3xl font-black text-white uppercase mt-1">CULER MEMBER</h3>
+              </div>
+              <span className="px-3 py-1 rounded-full bg-[#004D98] text-[#EDBB00] font-mono text-xs font-black uppercase">
+                Standard Tier
+              </span>
             </div>
-            <span className="px-3 py-1 rounded-full bg-[#004D98] text-[#EDBB00] font-mono text-xs font-black uppercase">
-              Standard
-            </span>
+
+            <div className="mt-4 flex items-baseline space-x-2 border-b border-white/10 pb-4">
+              <span className="text-4xl font-black text-[#EDBB00] font-mono">₹399</span>
+              <span className="text-xs text-gray-400 font-mono">/ 1 Year Validity</span>
+            </div>
+
+            <p className="text-xs text-gray-300 leading-relaxed mt-4">
+              Essential membership for every Barça fan in Bengaluru. Join screening RSVPs, get 10% partner discounts, and your physical membership card.
+            </p>
+
+            <ul className="space-y-2.5 text-xs text-gray-200 font-sans mt-5">
+              <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00] shrink-0" /><span>Priority access to all match screenings</span></li>
+              <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00] shrink-0" /><span className="font-bold text-white">10% off screening tickets</span></li>
+              <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00] shrink-0" /><span>Up to 10% off F&B at partner venues</span></li>
+              <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00] shrink-0" /><span>10% off all official merchandise</span></li>
+              <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00] shrink-0" /><span>Member-only broadcasts & community updates</span></li>
+              <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00] shrink-0" /><span>Physical membership card delivered</span></li>
+            </ul>
           </div>
 
-          <p className="text-xs text-gray-300 leading-relaxed">
-            Essential membership for every Barça fan in Bengaluru. Join screening RSVPs, weekly turf games, and WhatsApp groups.
-          </p>
-
-          <ul className="space-y-2.5 text-xs text-gray-200 font-sans">
-            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span>Early RSVP access for all match screenings</span></li>
-            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span>Digital Bengaluru Culé Pass Card</span></li>
-            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span>Official Bengaluru Culés WhatsApp Community</span></li>
-            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span>Weekend 7v7 turf game booking access</span></li>
-          </ul>
-
-          <button
-            onClick={() => {
-              const el = document.getElementById('registration-form');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="w-full py-3.5 rounded-xl bg-white/10 border border-white/20 text-white font-extrabold text-xs uppercase tracking-wider hover:border-[#EDBB00] transition-all"
-          >
-            Join as Culer Member
-          </button>
+          <div className="space-y-3 pt-6 border-t border-white/10">
+            <button
+              onClick={() => {
+                const el = document.getElementById('registration-form');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="w-full py-3.5 rounded-xl bg-white/10 border border-white/20 text-white font-extrabold text-xs uppercase tracking-wider hover:border-[#EDBB00] transition-all"
+            >
+              Join Online as Culer (₹399)
+            </button>
+            <a
+              href="https://wa.me/919340923809?text=Hi%20Aryaman,%20I%20want%20to%20join%20FCB%20Bengaluru%20as%20a%20Culer%20Member%20(₹399)!"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3 rounded-xl bg-[#25D366]/20 border border-[#25D366]/50 text-[#25D366] font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 hover:bg-[#25D366]/30 transition-all"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>Register via Aryaman's WhatsApp</span>
+            </a>
+          </div>
         </div>
 
         {/* Tier 2: Soci */}
-        <div className="glass-panel-gold p-8 rounded-3xl border-2 border-[#EDBB00] space-y-6 relative overflow-hidden shadow-2xl">
+        <div className="glass-panel-gold p-8 rounded-3xl border-2 border-[#EDBB00] space-y-6 relative overflow-hidden shadow-2xl flex flex-col justify-between">
           <div className="absolute top-0 inset-x-0 h-1.5 senyera-barca-strip-animated" />
           
-          <div className="flex justify-between items-start">
-            <div>
-              <span className="text-xs font-mono text-[#EDBB00] font-bold uppercase tracking-widest block">PREMIUM SUPPORTER TIER</span>
-              <h3 className="text-3xl font-black text-white uppercase mt-1">SOCI MEMBER</h3>
+          <div>
+            <div className="flex justify-between items-start">
+              <div>
+                <span className="text-xs font-mono text-[#EDBB00] font-bold uppercase tracking-widest block">PREMIUM SUPPORTER TIER</span>
+                <h3 className="text-3xl font-black text-white uppercase mt-1">SOCI MEMBER</h3>
+              </div>
+              <span className="px-3 py-1 rounded-full bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-mono text-xs font-black uppercase shadow-lg">
+                VIP Official
+              </span>
             </div>
-            <span className="px-3 py-1 rounded-full bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-mono text-xs font-black uppercase shadow-lg">
-              VIP Official
-            </span>
+
+            <div className="mt-4 flex items-baseline space-x-2 border-b border-white/10 pb-4">
+              <span className="text-4xl font-black text-[#EDBB00] font-mono">₹999</span>
+              <span className="text-xs text-gray-400 font-mono">/ 1 Year Validity</span>
+            </div>
+
+            <p className="text-xs text-gray-300 leading-relaxed mt-4">
+              The ultimate Barça Bengaluru experience. Includes official woven scarf goodie kit, 25% screening discounts, VIP seating, and AGM voting rights.
+            </p>
+
+            <ul className="space-y-2.5 text-xs text-gray-200 font-sans mt-5">
+              <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00] shrink-0" /><span className="font-bold text-white">Everything in Basic Membership, plus:</span></li>
+              <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00] shrink-0" /><span className="font-bold text-[#EDBB00]">25% off screening tickets</span></li>
+              <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00] shrink-0" /><span>Up to 15% off F&B at partner venues</span></li>
+              <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00] shrink-0" /><span>15% off all official merchandise</span></li>
+              <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00] shrink-0" /><span>Table reservation (subject to availability)</span></li>
+              <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00] shrink-0" /><span className="font-bold text-white">Exclusive FCB Bengaluru goodie kit with woven scarf</span></li>
+              <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00] shrink-0" /><span>Priority access to limited-seat Clásico events</span></li>
+            </ul>
           </div>
 
-          <p className="text-xs text-gray-300 leading-relaxed">
-            The ultimate Barça Bengaluru experience. Includes official club scarf, VIP screening seats, voting rights, and gala invitations.
-          </p>
-
-          <ul className="space-y-2.5 text-xs text-gray-200 font-sans">
-            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span className="font-bold text-white">Includes Official Woven FCB Bengaluru Scarf</span></li>
-            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span>VIP Reserved Seating at El Clásico Screenings</span></li>
-            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span>Invitation to Annual Galas & BBQ Meetups</span></li>
-            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span>Voting rights in supporters club AGM decisions</span></li>
-            <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00]" /><span>Priority registration for inter-fan club trophies</span></li>
-          </ul>
-
-          <button
-            onClick={() => {
-              const el = document.getElementById('registration-form');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition-all shadow-xl"
-          >
-            Join as Soci Member
-          </button>
+          <div className="space-y-3 pt-6 border-t border-white/10">
+            <button
+              onClick={() => {
+                const el = document.getElementById('registration-form');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition-all shadow-xl"
+            >
+              Join Online as Soci (₹999)
+            </button>
+            <a
+              href="https://wa.me/919340923809?text=Hi%20Aryaman,%20I%20want%20to%20join%20FCB%20Bengaluru%20as%20a%20Soci%20Member%20(₹999)!"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3 rounded-xl bg-[#25D366] text-[#060e1a] font-extrabold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 hover:brightness-110 transition-all shadow-md"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>Register via Aryaman's WhatsApp</span>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -325,6 +366,20 @@ export const Join: React.FC = () => {
 
                 <div>
                   <label className="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1">
+                    Select Membership Tier *
+                  </label>
+                  <select
+                    value={formData.tier}
+                    onChange={e => setFormData({ ...formData, tier: e.target.value })}
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#09152b] border border-[#EDBB00]/40 text-white focus:outline-none focus:border-[#EDBB00] text-sm font-bold"
+                  >
+                    <option value="Culer Member (₹399)">Culer Member — ₹399 / Year (Basic Membership)</option>
+                    <option value="Soci Member (₹999)">Soci Member — ₹999 / Year (Premium VIP + Scarf Kit)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1">
                     Full Name *
                   </label>
                   <input
@@ -397,16 +452,28 @@ export const Join: React.FC = () => {
                 </div>
                 <h3 className="text-2xl font-black text-white uppercase">Benvingut, Culé!</h3>
                 <p className="text-xs text-gray-300">
-                  Welcome to FC Barcelona Supporters Club Bengaluru, <strong className="text-[#EDBB00]">{formData.name}</strong>! You are now registered in our Bengaluru Culés database.
+                  Welcome to FC Barcelona Supporters Club Bengaluru, <strong className="text-[#EDBB00]">{formData.name}</strong>! Your registration for <strong className="text-white">{formData.tier}</strong> has been received.
                 </p>
                 <div className="p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-left text-gray-300 font-mono space-y-1">
+                  <p>• Tier: <span className="text-[#EDBB00]">{formData.tier}</span></p>
                   <p>• Area: {formData.locality}</p>
                   <p>• Phone: {formData.phone}</p>
-                  <p>• Status: Active Supporter Member</p>
+                  <p>• Status: Pending Payment & Onboarding</p>
                 </div>
+
+                <a
+                  href={`https://wa.me/919340923809?text=Hi%20Aryaman,%20I%20have%20registered%20for%20${encodeURIComponent(formData.tier)}.%20Name:%20${encodeURIComponent(formData.name)},%20Phone:%20${encodeURIComponent(formData.phone)},%20Area:%20${encodeURIComponent(formData.locality)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3.5 rounded-xl bg-[#25D366] text-[#060e1a] font-extrabold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 hover:brightness-110 shadow-lg"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Complete Payment With Aryaman on WhatsApp</span>
+                </a>
+
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="px-6 py-2.5 rounded-xl bg-white/10 text-white font-bold text-xs uppercase tracking-wider hover:bg-white/20"
+                  className="px-6 py-2.5 rounded-xl bg-white/10 text-white font-bold text-xs uppercase tracking-wider hover:bg-white/20 mt-2"
                 >
                   Register Another Member
                 </button>

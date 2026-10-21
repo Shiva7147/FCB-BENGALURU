@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
     },
     refunds: {
       title: 'Refund & Return Policy',
-      body: 'Merchandise purchases can be exchanged or refunded within 7 days of pickup or delivery if damaged or incorrectly sized. Matchday screening cover charge tickets are non-refundable but transferable to another Culé.'
+      body: 'In accordance with FCB Bengaluru official policy, all merchandise sales are final with no returns or exchanges. Matchday screening tickets are non-refundable but can be transferred to another Culé upon notifying the admin team.'
     },
     shipping: {
       title: 'Shipping & Delivery Policy',
@@ -84,12 +84,12 @@ export const Footer: React.FC = () => {
                   <WhatsAppIcon className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://www.youtube.com/@FCBBengaluru"
+                  href="https://www.youtube.com/@HaanFootball"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2.5 rounded-xl bg-white/5 hover:bg-red-600/30 border border-white/10 hover:border-red-500 text-red-500 transition-all"
-                  aria-label="Official YouTube Channel (@FCBBengaluru)"
-                  title="Official YouTube Channel (@FCBBengaluru)"
+                  aria-label="Official YouTube Channel (@HaanFootball)"
+                  title="Official YouTube Channel (@HaanFootball)"
                 >
                   <YoutubeIcon className="w-4 h-4" />
                 </a>
@@ -137,8 +137,8 @@ export const Footer: React.FC = () => {
 
             {/* Col 5: FC Barcelona Slogan Callout (Rule #23 Requirement) */}
             <div className="space-y-3 bg-[#004D98]/20 border border-[#EDBB00]/30 rounded-2xl p-5 backdrop-blur-sm self-start text-left">
-              <span className="text-[10px] font-mono text-[#EDBB00] uppercase tracking-widest block">
-                ONE COMMUNITY
+              <span className="text-[10px] font-mono text-[#EDBB00] uppercase tracking-widest block font-bold">
+                NAMMA KANNASU, NAMMA CLUB
               </span>
               <h5 className="text-base font-black text-white uppercase tracking-tight">
                 Més que un club. Més que a match.
@@ -146,6 +146,11 @@ export const Footer: React.FC = () => {
               <p className="text-xs text-gray-300 leading-normal">
                 Where Bengaluru’s Culés come together for football, friendship and unforgettable matchday nights.
               </p>
+              <div className="pt-1 text-[11px] font-mono text-gray-400">
+                <p>📍 Koramangala, Bengaluru - 560047</p>
+                <p>📞 Call: +91 9777912631</p>
+                <p>💬 WhatsApp: +91 9340923809</p>
+              </div>
               <Link
                 to="/join"
                 className="inline-flex items-center space-x-1 px-3 py-2 rounded-xl bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition-all shadow-md mt-2 w-full justify-center"

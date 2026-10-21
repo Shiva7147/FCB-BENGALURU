@@ -126,9 +126,48 @@ export const About: React.FC = () => {
         </div>
       </div>
 
+      {/* Important Achievements / Milestones (Section 7 Client Document) */}
+      <div className="space-y-6 text-left">
+        <div className="border-l-4 border-l-[#A50044] pl-4">
+          <span className="text-xs font-mono text-[#EDBB00] uppercase tracking-widest block">HISTORIC LANDMARKS</span>
+          <h2 className="text-3xl font-black text-white uppercase">IMPORTANT MILESTONES</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="glass-panel p-8 rounded-3xl border border-[#EDBB00]/40 space-y-4 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-6 opacity-10 font-mono text-7xl font-black text-[#EDBB00]">01</div>
+            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#004D98]/60 text-[#EDBB00] text-xs font-mono font-bold uppercase">
+              <Trophy className="w-3.5 h-3.5" />
+              <span>Record Crowd</span>
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
+              3,000+ Fans Screening for World Cup Final
+            </h3>
+            <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-sans">
+              Organised the massive 3,000+ fan live final screening in Bengaluru — creating an unforgettable stadium soundscape in the garden city and setting a benchmark for football events in India.
+            </p>
+          </div>
+
+          <div className="glass-panel p-8 rounded-3xl border border-[#EDBB00]/40 space-y-4 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-6 opacity-10 font-mono text-7xl font-black text-[#A50044]">02</div>
+            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#A50044]/60 text-white text-xs font-mono font-bold uppercase">
+              <Flame className="w-3.5 h-3.5 text-[#EDBB00]" />
+              <span>Biggest in India</span>
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
+              500+ Culés El Clásico Screening
+            </h3>
+            <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-sans">
+              Brought together over 500 Bengaluru Culés under one roof for El Clásico — the biggest single FC Barcelona supporters screening in the entire country, featured on La Liga official media.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Visual Statement (Section 2 & 7) */}
       <div className="glass-panel rounded-3xl p-10 text-center space-y-4 border border-[#EDBB00]/40">
-        <h2 className="text-2xl sm:text-4xl font-black text-[#EDBB00] uppercase tracking-tight">
+        <span className="text-xs font-mono text-[#EDBB00] uppercase tracking-widest block">NAMMA KANNASU, NAMMA CLUB</span>
+        <h2 className="text-2xl sm:text-4xl font-black text-white uppercase tracking-tight">
           “Més que un club. More than a matchday.”
         </h2>
         <p className="text-xs sm:text-sm text-gray-200 max-w-2xl mx-auto">

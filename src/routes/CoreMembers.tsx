@@ -8,22 +8,39 @@ import { InstagramIcon, TwitterIcon } from '../components/SocialIcons';
 export const CoreMembers: React.FC = () => {
   const { coreMembers } = useAdmin();
   const [selectedMember, setSelectedMember] = useState<CoreMember | null>(null);
+  const [selectedDept, setSelectedDept] = useState<string>('All');
 
-  // Tasteful rating statistics per member for collectible card feel (Rule #8)
+  // Rating statistics per member for collectible card feel
   const memberStats: Record<string, { rating: number; community: number; leadership: number; matchday: number; football: number }> = {
-    'cm-1': { rating: 95, community: 96, leadership: 94, matchday: 95, football: 92 },
-    'cm-2': { rating: 93, community: 94, leadership: 92, matchday: 96, football: 90 },
-    'cm-3': { rating: 94, community: 92, leadership: 90, matchday: 94, football: 97 },
-    'cm-4': { rating: 92, community: 95, leadership: 91, matchday: 93, football: 89 }
+    'cm-1': { rating: 96, community: 98, leadership: 97, matchday: 95, football: 92 },
+    'cm-2': { rating: 95, community: 97, leadership: 94, matchday: 96, football: 91 },
+    'cm-3': { rating: 95, community: 95, leadership: 96, matchday: 98, football: 90 },
+    'cm-4': { rating: 94, community: 96, leadership: 94, matchday: 95, football: 92 },
+    'cm-5': { rating: 95, community: 94, leadership: 93, matchday: 98, football: 90 },
+    'cm-6': { rating: 94, community: 93, leadership: 95, matchday: 92, football: 89 },
+    'cm-7': { rating: 93, community: 94, leadership: 91, matchday: 92, football: 90 },
+    'cm-8': { rating: 93, community: 92, leadership: 90, matchday: 93, football: 88 },
+    'cm-9': { rating: 92, community: 93, leadership: 90, matchday: 97, football: 92 },
+    'cm-10': { rating: 92, community: 92, leadership: 90, matchday: 96, football: 91 },
+    'cm-11': { rating: 91, community: 91, leadership: 89, matchday: 95, football: 90 },
+    'cm-12': { rating: 92, community: 94, leadership: 90, matchday: 97, football: 93 },
+    'cm-13': { rating: 91, community: 93, leadership: 88, matchday: 92, football: 89 },
+    'cm-14': { rating: 95, community: 93, leadership: 92, matchday: 95, football: 99 }
   };
+
+  const departments = ['All', 'Core Team', 'Working Committee', 'Football & Operations'];
+
+  const filteredMembers = coreMembers.filter(m =>
+    selectedDept === 'All' ? true : m.department === selectedDept
+  );
 
   return (
     <div className="pt-24 pb-20 space-y-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <SectionHeader
         badge="THE PEOPLE BEHIND THE PASSION"
-        title="Core Team Player Cards"
-        subtitle="A supporters club is only as strong as the people who show up for it. Click any card for detailed profiles."
+        title="FCB Bengaluru Team & Core Leads"
+        subtitle="Meet the founders, executives, working committee, and screening admins who make every matchday in Bengaluru come alive."
       />
 
       {/* Volunteer for FCB Bengaluru CTA Banner */}
@@ -46,16 +63,33 @@ export const CoreMembers: React.FC = () => {
         </a>
       </div>
 
-      {/* Collectible Trading Cards Grid (Rules #8 & #9) */}
+      {/* Team Category Filter Tabs */}
+      <div className="flex flex-wrap items-center justify-center gap-2">
+        {departments.map((dept) => (
+          <button
+            key={dept}
+            onClick={() => setSelectedDept(dept)}
+            className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all ${
+              selectedDept === dept
+                ? 'bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] shadow-lg scale-105'
+                : 'bg-white/5 text-gray-300 hover:bg-white/10'
+            }`}
+          >
+            {dept}
+          </button>
+        ))}
+      </div>
+
+      {/* Collectible Trading Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {coreMembers.map((member) => {
-          const stats = memberStats[member.id] || { rating: 90, community: 90, leadership: 90, matchday: 90, football: 90 };
+        {filteredMembers.map((member) => {
+          const stats = memberStats[member.id] || { rating: 92, community: 92, leadership: 91, matchday: 93, football: 90 };
           
           return (
             <div
               key={member.id}
               onClick={() => setSelectedMember(member)}
-              className="fifa-card relative rounded-3xl p-5 bg-gradient-to-b from-[#091830] via-[#060e1a] to-[#70002b] border-2 border-[#EDBB00]/80 shadow-2xl cursor-pointer select-none text-left overflow-hidden group"
+              className="fifa-card relative rounded-3xl p-5 bg-gradient-to-b from-[#091830] via-[#060e1a] to-[#70002b] border-2 border-[#EDBB00]/80 shadow-2xl cursor-pointer select-none text-left overflow-hidden group hover:scale-[1.02] transition-transform"
             >
               {/* Pitch Line Overlay */}
               <div className="absolute inset-0 bg-jersey-pattern opacity-20 pointer-events-none" />
@@ -68,7 +102,7 @@ export const CoreMembers: React.FC = () => {
                     {stats.rating}
                   </span>
                   <span className="text-[10px] font-black text-white tracking-widest uppercase mt-0.5">
-                    LEAD
+                    {member.department === 'Football & Operations' ? 'OPS' : member.department === 'Working Committee' ? 'ADMIN' : 'LEAD'}
                   </span>
                 </div>
                 <div className="w-8 h-8 rounded-full bg-[#004D98]/60 border border-[#EDBB00]/40 flex items-center justify-center text-[#EDBB00]">
@@ -76,11 +110,15 @@ export const CoreMembers: React.FC = () => {
                 </div>
               </div>
 
-              {/* Large Portrait Image */}
+              {/* Large Portrait Image with fallback */}
               <div className="relative w-36 h-36 mx-auto mt-2 rounded-2xl overflow-hidden border-2 border-[#EDBB00]/60 shadow-xl bg-black/40">
                 <img
                   src={member.imageUrl}
                   alt={member.name}
+                  onError={(e) => {
+                    // Fallback to high quality avatar if drive link is restricted
+                    (e.target as HTMLImageElement).src = `https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80`;
+                  }}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
@@ -93,9 +131,14 @@ export const CoreMembers: React.FC = () => {
                 <p className="text-[10px] font-extrabold text-[#EDBB00] uppercase tracking-widest mt-0.5 truncate">
                   {member.role}
                 </p>
+                {member.department && (
+                  <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-[9px] font-mono text-gray-300 uppercase">
+                    {member.department}
+                  </span>
+                )}
               </div>
 
-              {/* Ratings Matrix (Rule #8) */}
+              {/* Ratings Matrix */}
               <div className="grid grid-cols-2 gap-x-4 gap-y-1 mt-3 pt-3 border-t border-white/10 text-[11px] font-mono text-gray-200">
                 <div className="flex justify-between">
                   <span className="text-gray-400">COM:</span>

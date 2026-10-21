@@ -60,6 +60,7 @@ export const AdminPanel: React.FC = () => {
   const [memberForm, setMemberForm] = useState({
     name: '',
     role: '',
+    department: 'Core Team' as 'Core Team' | 'Working Committee' | 'Football & Operations',
     bio: '',
     imageUrl: '',
     favoritePlayer: '',
@@ -456,7 +457,7 @@ export const AdminPanel: React.FC = () => {
                 <span>Add Core Leadership Member</span>
               </h4>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-gray-300 uppercase mb-1">Full Name *</label>
                   <input
@@ -473,11 +474,23 @@ export const AdminPanel: React.FC = () => {
                   <input
                     type="text"
                     required
-                    placeholder="Screening Coordinator"
+                    placeholder="Screening Admin"
                     value={memberForm.role}
                     onChange={e => setMemberForm({ ...memberForm, role: e.target.value })}
                     className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm"
                   />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-gray-300 uppercase mb-1">Department Category *</label>
+                  <select
+                    value={memberForm.department}
+                    onChange={e => setMemberForm({ ...memberForm, department: e.target.value as any })}
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#060e1a] border border-white/10 text-white text-sm"
+                  >
+                    <option value="Core Team">Core Team</option>
+                    <option value="Working Committee">Working Committee</option>
+                    <option value="Football & Operations">Football & Operations</option>
+                  </select>
                 </div>
               </div>
 
