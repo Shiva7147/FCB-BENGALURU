@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import confetti from 'canvas-confetti';
 
 export const CheckoutPage: React.FC = () => {
-  const { cartItems, subtotal, totalItems, clearCart } = useCart();
+  const { cartItems, subtotal, totalItems, taxRatePercent, taxAmount, platformFee, clearCart } = useCart();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -25,7 +25,7 @@ export const CheckoutPage: React.FC = () => {
   const [orderId, setOrderId] = useState('');
 
   const shippingCost = formData.deliveryMethod === 'delivery' ? 99 : 0;
-  const grandTotal = subtotal + shippingCost;
+  const grandTotal = subtotal + taxAmount + platformFee + shippingCost;
 
   const handleCompleteOrder = (e: React.FormEvent) => {
     e.preventDefault();
@@ -304,6 +304,14 @@ export const CheckoutPage: React.FC = () => {
                 <div className="flex justify-between">
                   <span>Merchandise Subtotal</span>
                   <span className="font-mono text-white">₹{subtotal}</span>
+                </div>
+                <div className="flex justify-between text-gray-400">
+                  <span>Applicable Taxes ({taxRatePercent}%)</span>
+                  <span className="font-mono text-white">₹{taxAmount}</span>
+                </div>
+                <div className="flex justify-between text-gray-400">
+                  <span>Platform Fee</span>
+                  <span className="font-mono text-white">₹{platformFee}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Shipping Charge</span>

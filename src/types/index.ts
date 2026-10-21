@@ -1,21 +1,22 @@
 export interface Screening {
   id: string;
   match: string;
-  opponent: string;
+  opponent?: string;
   opponentLogo?: string;
   competition: string;
   date: string;
   time: string;
   venue: string;
-  venueAddress: string;
+  venueAddress?: string;
   poster?: string;
   description: string;
   isUpcoming: boolean;
   entryFee?: string;
   rsvpCount: number;
   capacity?: number;
-  phase?: 'Phase 1 (Early Bird)' | 'Phase 2 (General)' | 'Phase 3 (Final Call)';
+  phase?: string;
   memberDiscount?: string;
+  ticketUrl?: string; // External Ticket Purchase URL (BookMyShow, Paytm Insider, etc.)
 }
 
 export interface Announcement {
@@ -78,6 +79,7 @@ export interface Product {
   id: string;
   name: string;
   price: number;
+  originalPrice?: number;
   description: string;
   imageUrl: string;
   category: 'Apparel' | 'Accessories' | 'Collectibles';
@@ -90,6 +92,15 @@ export interface CartItem {
   product: Product;
   selectedSize: string;
   quantity: number;
+}
+
+export interface MembershipConfig {
+  culerPrice: number;
+  sociPrice: number;
+  taxRatePercent: number;
+  platformFee: number;
+  availableKitSizes: string[];
+  sizePriceSlabs: Record<string, number>;
 }
 
 export interface TurfEvent {

@@ -1,13 +1,19 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Screening, Announcement, GalleryItem, Product, CoreMember, TurfEvent } from '../types';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
+import { Screening, Announcement, GalleryItem, Product, CoreMember, TurfEvent, MembershipConfig } from '../types';
 import {
-  INITIAL_SCREENINGS,
   INITIAL_ANNOUNCEMENTS,
   INITIAL_GALLERY,
-  INITIAL_PRODUCTS,
   INITIAL_CORE_MEMBERS,
   INITIAL_TURF_EVENTS
 } from '../data/mockData';
+import {
+  loadStoredScreenings,
+  saveStoredScreenings,
+  loadStoredProducts,
+  saveStoredProducts,
+  loadStoredMembershipConfig,
+  saveStoredMembershipConfig
+} from '../lib/store';
 
 interface AdminContextType {
   screenings: Screening[];
@@ -16,35 +22,43 @@ interface AdminContextType {
   products: Product[];
   coreMembers: CoreMember[];
   turfEvents: TurfEvent[];
+  membershipConfig: MembershipConfig;
+  // Screening / Event CRUD
   addScreening: (item: Omit<Screening, 'id' | 'rsvpCount'>) => void;
+  updateScreening: (id: string, item: Partial<Screening>) => void;
+  deleteScreening: (id: string) => void;
+  // Product / Merch CRUD
+  addProduct: (item: Omit<Product, 'id'>) => void;
+  updateProduct: (id: string, item: Partial<Product>) => void;
+  deleteProduct: (id: string) => void;
+  // Membership Config
+  updateMembershipConfig: (config: Partial<MembershipConfig>) => void;
+  // Others
   addAnnouncement: (item: Omit<Announcement, 'id'>) => void;
   addGalleryItem: (item: Omit<GalleryItem, 'id'>) => void;
-  addProduct: (item: Omit<Product, 'id'>) => void;
   addCoreMember: (item: Omit<CoreMember, 'id'>) => void;
   addTurfEvent: (item: Omit<TurfEvent, 'id' | 'slotsTaken'>) => void;
   rsvpScreening: (id: string) => void;
+  // Editing guard flag ref to prevent polling overwrites
+  isEditingRef: React.MutableRefObject<boolean>;
 }
 
 const STORAGE_KEYS = {
-  SCREENINGS: 'fcb_bengaluru_screenings',
-  ANNOUNCEMENTS: 'fcb_bengaluru_announcements',
-  GALLERY: 'fcb_bengaluru_gallery',
-  PRODUCTS: 'fcb_bengaluru_products',
-  CORE_MEMBERS: 'fcb_bengaluru_core_members',
-  TURF_EVENTS: 'fcb_bengaluru_turf_events'
+  ANNOUNCEMENTS: 'fcb_bengaluru_announcements_v2',
+  GALLERY: 'fcb_bengaluru_gallery_v2',
+  CORE_MEMBERS: 'fcb_bengaluru_core_members_v2',
+  TURF_EVENTS: 'fcb_bengaluru_turf_events_v2'
 };
 
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
 
 export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [screenings, setScreenings] = useState<Screening[]>(() => {
-    try {
-      const data = localStorage.getItem(STORAGE_KEYS.SCREENINGS);
-      return data ? JSON.parse(data) : INITIAL_SCREENINGS;
-    } catch {
-      return INITIAL_SCREENINGS;
-    }
-  });
+  const [screenings, setScreenings] = useState<Screening[]>(() => loadStoredScreenings());
+  const [products, setProducts] = useState<Product[]>(() => loadStoredProducts());
+  const [membershipConfig, setMembershipConfig] = useState<MembershipConfig>(() => loadStoredMembershipConfig());
+
+  // Editing guard ref to prevent 4s polling from overwriting active form inputs
+  const isEditingRef = useRef<boolean>(false);
 
   const [announcements, setAnnouncements] = useState<Announcement[]>(() => {
     try {
@@ -61,15 +75,6 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       return data ? JSON.parse(data) : INITIAL_GALLERY;
     } catch {
       return INITIAL_GALLERY;
-    }
-  });
-
-  const [products, setProducts] = useState<Product[]>(() => {
-    try {
-      const data = localStorage.getItem(STORAGE_KEYS.PRODUCTS);
-      return data ? JSON.parse(data) : INITIAL_PRODUCTS;
-    } catch {
-      return INITIAL_PRODUCTS;
     }
   });
 
@@ -91,10 +96,38 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   });
 
+  // Background poll every 4 seconds for real-time client sync
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.SCREENINGS, JSON.stringify(screenings));
-  }, [screenings]);
+    const fetchRemoteData = () => {
+      // Guard: do not overwrite local state if admin is actively typing
+      if (isEditingRef.current) return;
 
+      const latestScreenings = loadStoredScreenings();
+      const latestProducts = loadStoredProducts();
+      const latestConfig = loadStoredMembershipConfig();
+
+      setScreenings(latestScreenings);
+      setProducts(latestProducts);
+      setMembershipConfig(latestConfig);
+    };
+
+    const interval = setInterval(fetchRemoteData, 4000);
+
+    const handleStoreUpdated = () => {
+      if (!isEditingRef.current) {
+        fetchRemoteData();
+      }
+    };
+
+    window.addEventListener('fcb_store_updated', handleStoreUpdated);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('fcb_store_updated', handleStoreUpdated);
+    };
+  }, []);
+
+  // Save changes
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.ANNOUNCEMENTS, JSON.stringify(announcements));
   }, [announcements]);
@@ -104,10 +137,6 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [gallery]);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(products));
-  }, [products]);
-
-  useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.CORE_MEMBERS, JSON.stringify(coreMembers));
   }, [coreMembers]);
 
@@ -115,15 +144,64 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     localStorage.setItem(STORAGE_KEYS.TURF_EVENTS, JSON.stringify(turfEvents));
   }, [turfEvents]);
 
+  // SCREENING CRUD
   const addScreening = (item: Omit<Screening, 'id' | 'rsvpCount'>) => {
     const newItem: Screening = {
       ...item,
       id: `sc-${Date.now()}`,
-      rsvpCount: 1
+      rsvpCount: 0
     };
-    setScreenings(prev => [newItem, ...prev]);
+    const updated = [newItem, ...screenings];
+    setScreenings(updated);
+    saveStoredScreenings(updated);
   };
 
+  const updateScreening = (id: string, updatedFields: Partial<Screening>) => {
+    const updated = screenings.map(sc => (sc.id === id ? { ...sc, ...updatedFields } : sc));
+    setScreenings(updated);
+    saveStoredScreenings(updated);
+  };
+
+  const deleteScreening = (id: string) => {
+    const updated = screenings.filter(sc => sc.id !== id);
+    setScreenings(updated);
+    saveStoredScreenings(updated);
+  };
+
+  // PRODUCT CRUD
+  const addProduct = (item: Omit<Product, 'id'>) => {
+    const newItem: Product = {
+      ...item,
+      id: `prod-${Date.now()}`
+    };
+    const updated = [newItem, ...products];
+    setProducts(updated);
+    saveStoredProducts(updated);
+  };
+
+  const updateProduct = (id: string, updatedFields: Partial<Product>) => {
+    const updated = products.map(p => (p.id === id ? { ...p, ...updatedFields } : p));
+    setProducts(updated);
+    saveStoredProducts(updated);
+  };
+
+  const deleteProduct = (id: string) => {
+    const updated = products.filter(p => p.id !== id);
+    setProducts(updated);
+    saveStoredProducts(updated);
+  };
+
+  // MEMBERSHIP CONFIG
+  const updateMembershipConfig = (newConfig: Partial<MembershipConfig>) => {
+    const updated: MembershipConfig = {
+      ...membershipConfig,
+      ...newConfig
+    };
+    setMembershipConfig(updated);
+    saveStoredMembershipConfig(updated);
+  };
+
+  // OTHERS
   const addAnnouncement = (item: Omit<Announcement, 'id'>) => {
     const newItem: Announcement = {
       ...item,
@@ -138,14 +216,6 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       id: `gal-${Date.now()}`
     };
     setGallery(prev => [newItem, ...prev]);
-  };
-
-  const addProduct = (item: Omit<Product, 'id'>) => {
-    const newItem: Product = {
-      ...item,
-      id: `prod-${Date.now()}`
-    };
-    setProducts(prev => [newItem, ...prev]);
   };
 
   const addCoreMember = (item: Omit<CoreMember, 'id'>) => {
@@ -166,9 +236,9 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   const rsvpScreening = (id: string) => {
-    setScreenings(prev =>
-      prev.map(sc => (sc.id === id ? { ...sc, rsvpCount: sc.rsvpCount + 1 } : sc))
-    );
+    const updated = screenings.map(sc => (sc.id === id ? { ...sc, rsvpCount: sc.rsvpCount + 1 } : sc));
+    setScreenings(updated);
+    saveStoredScreenings(updated);
   };
 
   return (
@@ -180,13 +250,20 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         products,
         coreMembers,
         turfEvents,
+        membershipConfig,
         addScreening,
+        updateScreening,
+        deleteScreening,
+        addProduct,
+        updateProduct,
+        deleteProduct,
+        updateMembershipConfig,
         addAnnouncement,
         addGalleryItem,
-        addProduct,
         addCoreMember,
         addTurfEvent,
-        rsvpScreening
+        rsvpScreening,
+        isEditingRef
       }}
     >
       {children}

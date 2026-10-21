@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Product, CartItem } from '../types';
+import { Product, CartItem, MembershipConfig } from '../types';
+import { loadStoredMembershipConfig } from '../lib/store';
 
 interface CartContextType {
   cartItems: CartItem[];
@@ -9,6 +10,10 @@ interface CartContextType {
   clearCart: () => void;
   subtotal: number;
   totalItems: number;
+  taxRatePercent: number;
+  taxAmount: number;
+  platformFee: number;
+  totalAmount: number;
   isCartOpen: boolean;
   setIsCartOpen: (open: boolean) => void;
 }
@@ -27,7 +32,20 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   });
 
+  const [membershipConfig, setMembershipConfig] = useState<MembershipConfig>(() => loadStoredMembershipConfig());
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  // Sync membership config changes for tax & platform fee
+  useEffect(() => {
+    const handleStoreUpdate = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (!detail || detail.type === 'membership_config') {
+        setMembershipConfig(loadStoredMembershipConfig());
+      }
+    };
+    window.addEventListener('fcb_store_updated', handleStoreUpdate);
+    return () => window.removeEventListener('fcb_store_updated', handleStoreUpdate);
+  }, []);
 
   useEffect(() => {
     try {
@@ -78,6 +96,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const subtotal = cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const taxRatePercent = membershipConfig.taxRatePercent ?? 5;
+  const taxAmount = subtotal > 0 ? Math.round((subtotal * taxRatePercent) / 100) : 0;
+  const platformFee = subtotal > 0 ? (membershipConfig.platformFee ?? 20) : 0;
+  const totalAmount = subtotal + taxAmount + platformFee;
 
   return (
     <CartContext.Provider
@@ -89,6 +111,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         clearCart,
         subtotal,
         totalItems,
+        taxRatePercent,
+        taxAmount,
+        platformFee,
+        totalAmount,
         isCartOpen,
         setIsCartOpen
       }}

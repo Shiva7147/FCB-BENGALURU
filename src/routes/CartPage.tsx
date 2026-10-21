@@ -2,18 +2,52 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SectionHeader } from '../components/SectionHeader';
 import { useCart } from '../context/CartContext';
-import { ShoppingBag, Plus, Minus, Trash2, ArrowRight, ShieldCheck } from 'lucide-react';
+import { ShoppingBag, Plus, Minus, Trash2, ArrowRight, ShieldCheck, MessageCircle } from 'lucide-react';
 
 export const CartPage: React.FC = () => {
-  const { cartItems, removeFromCart, updateQuantity, clearCart, subtotal, totalItems } = useCart();
+  const {
+    cartItems,
+    removeFromCart,
+    updateQuantity,
+    clearCart,
+    subtotal,
+    totalItems,
+    taxRatePercent,
+    taxAmount,
+    platformFee,
+    totalAmount
+  } = useCart();
   const navigate = useNavigate();
+
+  const handleWhatsAppDispatch = () => {
+    if (cartItems.length === 0) return;
+    const itemList = cartItems
+      .map(
+        (item, i) =>
+          `${i + 1}. ${item.product.name} (Size: ${item.selectedSize}) x${item.quantity} = ₹${
+            item.product.price * item.quantity
+          }`
+      )
+      .join('%0A');
+
+    const message = `*FC BARCELONA BENGALURU - MERCHANDISE ORDER*%0A%0A` +
+      `*Items Requested:*%0A${itemList}%0A%0A` +
+      `*Order Summary:*%0A` +
+      `• Subtotal: ₹${subtotal}%0A` +
+      `• Tax (${taxRatePercent}%): ₹${taxAmount}%0A` +
+      `• Platform Fee: ₹${platformFee}%0A` +
+      `• *Total Payable: ₹${totalAmount}*%0A%0A` +
+      `Please confirm stock availability and send payment / pickup details! Força Barça! 🔴🔵`;
+
+    window.open(`https://wa.me/917676114227?text=${message}`, '_blank');
+  };
 
   return (
     <div className="pt-24 pb-20 space-y-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <SectionHeader
         badge="YOUR SUPPORTERS BASKET"
-        title="Shopping Cart ({totalItems} Items)"
+        title={`Shopping Cart (${totalItems} Items)`}
         subtitle="Review your FC Barcelona Supporters Club merchandise order before proceeding to checkout."
       />
 
@@ -122,26 +156,41 @@ export const CartPage: React.FC = () => {
                   <span className="font-mono text-white font-bold">₹{subtotal}</span>
                 </div>
                 <div className="flex justify-between">
+                  <span>Applicable Taxes ({taxRatePercent}%)</span>
+                  <span className="font-mono text-white">₹{taxAmount}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Platform Fee</span>
+                  <span className="font-mono text-white">₹{platformFee}</span>
+                </div>
+                <div className="flex justify-between text-[11px] text-gray-400">
                   <span>Bengaluru Screening Pickup</span>
                   <span className="text-[#25D366] font-mono">FREE</span>
                 </div>
-                <div className="flex justify-between">
-                  <span>Standard Home Courier</span>
-                  <span className="font-mono text-white">₹99</span>
-                </div>
                 <div className="flex justify-between pt-3 border-t border-white/10 text-base font-black text-white">
                   <span>Final Amount</span>
-                  <span className="font-mono text-[#EDBB00]">₹{subtotal + 99}</span>
+                  <span className="font-mono text-[#EDBB00]">₹{totalAmount}</span>
                 </div>
               </div>
 
-              <button
-                onClick={() => navigate('/checkout')}
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-extrabold uppercase tracking-wider text-xs hover:brightness-110 transition-all shadow-xl flex items-center justify-center space-x-2"
-              >
-                <span>Proceed to Checkout</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
+              <div className="space-y-2 pt-2">
+                <button
+                  type="button"
+                  onClick={handleWhatsAppDispatch}
+                  className="w-full py-3.5 rounded-xl bg-[#25D366] text-[#060e1a] font-extrabold uppercase tracking-wider text-xs hover:brightness-110 transition-all shadow-xl flex items-center justify-center space-x-2"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Order Directly via WhatsApp</span>
+                </button>
+
+                <button
+                  onClick={() => navigate('/checkout')}
+                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-extrabold uppercase tracking-wider text-xs hover:brightness-110 transition-all shadow-xl flex items-center justify-center space-x-2"
+                >
+                  <span>Proceed to Payment Checkout</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
 
               <div className="flex items-center justify-center space-x-2 text-[10px] text-gray-400 font-mono pt-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#25D366]" />

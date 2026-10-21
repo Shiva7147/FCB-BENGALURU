@@ -34,11 +34,19 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) 
             alt={product.name}
             className="w-full h-full object-cover"
           />
-          {product.badge && (
-            <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#A50044] text-white text-[10px] font-black uppercase tracking-widest">
-              {product.badge}
-            </span>
-          )}
+          {/* Image Badges */}
+          <div className="absolute top-4 left-4 flex flex-col gap-1.5 z-10">
+            {product.badge && (
+              <span className="px-3 py-1 rounded-full bg-[#A50044] text-white text-[10px] font-black uppercase tracking-widest shadow-md">
+                {product.badge}
+              </span>
+            )}
+            {!product.inStock && (
+              <span className="px-3 py-1 rounded-full bg-red-600/90 text-white text-[10px] font-black uppercase tracking-widest shadow-md">
+                OUT OF STOCK
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Right: Details & Add To Cart Form */}
@@ -60,9 +68,21 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) 
               {product.name}
             </h3>
 
-            <p className="text-2xl font-extrabold text-[#EDBB00] font-mono">
-              ₹{product.price}
-            </p>
+            <div className="flex items-baseline space-x-3">
+              <span className="text-2xl font-extrabold text-[#EDBB00] font-mono">
+                ₹{product.price}
+              </span>
+              {product.originalPrice && product.originalPrice > product.price && (
+                <span className="text-sm text-gray-400 line-through font-mono">
+                  ₹{product.originalPrice}
+                </span>
+              )}
+              {product.originalPrice && product.originalPrice > product.price && (
+                <span className="text-xs font-black text-[#25D366] font-mono">
+                  {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
+                </span>
+              )}
+            </div>
 
             <p className="text-xs text-gray-300 leading-relaxed">
               {product.description}
@@ -122,14 +142,19 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) 
 
           {/* Action Button */}
           <button
+            disabled={!product.inStock}
             onClick={handleAddToCart}
             className={`w-full py-3.5 rounded-xl font-extrabold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-xl ${
-              added
+              !product.inStock
+                ? 'bg-white/10 text-gray-500 cursor-not-allowed border border-white/10'
+                : added
                 ? 'bg-[#25D366] text-white'
                 : 'bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] hover:brightness-110'
             }`}
           >
-            {added ? (
+            {!product.inStock ? (
+              <span>Currently Out of Stock</span>
+            ) : added ? (
               <>
                 <Check className="w-4 h-4" />
                 <span>Added to Cart!</span>

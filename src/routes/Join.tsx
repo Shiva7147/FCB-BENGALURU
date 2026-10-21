@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
 import { SectionHeader } from '../components/SectionHeader';
-import { Shield, Check, Users, Ticket, Flame, MessageCircle, Mail, Sparkles, ArrowRight } from 'lucide-react';
+import { Shield, Check, Users, Ticket, Flame, MessageCircle, Mail, Sparkles, ArrowRight, ShoppingBag } from 'lucide-react';
 import { InstagramIcon } from '../components/SocialIcons';
 import confetti from 'canvas-confetti';
-
+import { useAdmin } from '../context/AdminContext';
+import { useCart } from '../context/CartContext';
 import { MemberCardGenerator } from '../components/MemberCardGenerator';
 
 export const Join: React.FC = () => {
+  const { membershipConfig } = useAdmin();
+  const { addToCart } = useCart();
+
+  const [selectedCulerSize, setSelectedCulerSize] = useState('M');
+  const [selectedSociSize, setSelectedSociSize] = useState('L');
+  const [addedTier, setAddedTier] = useState<string | null>(null);
+
+  const culerPrice = (membershipConfig.culerPrice ?? 399) + (membershipConfig.sizePriceSlabs?.[selectedCulerSize] || 0);
+  const sociPrice = (membershipConfig.sociPrice ?? 999) + (membershipConfig.sizePriceSlabs?.[selectedSociSize] || 0);
+
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -14,8 +25,36 @@ export const Join: React.FC = () => {
     email: '',
     locality: 'Indiranagar',
     favPlayer: '',
-    tier: 'Culer Member (₹399)'
+    tier: `Culer Member (₹${culerPrice})`
   });
+
+  const handleAddMembershipToCart = (tier: 'Culer' | 'Soci') => {
+    const isSoci = tier === 'Soci';
+    const size = isSoci ? selectedSociSize : selectedCulerSize;
+    const price = isSoci ? sociPrice : culerPrice;
+
+    addToCart(
+      {
+        id: `membership-${tier.toLowerCase()}-${size}`,
+        name: `FCB Bengaluru ${tier} Official Membership`,
+        price: price,
+        originalPrice: isSoci ? price + 300 : price + 100,
+        description: `1-Year Official FCB Bengaluru ${tier} Membership Pass. Includes physical membership card, matchday discounts, and kit in size ${size}.`,
+        imageUrl: isSoci
+          ? 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80'
+          : 'https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=800&q=80',
+        category: 'Collectibles',
+        sizes: membershipConfig.availableKitSizes || ['S', 'M', 'L', 'XL', 'XXL', '3XL'],
+        inStock: true,
+        badge: `${tier.toUpperCase()} TIER`
+      },
+      size,
+      1
+    );
+
+    setAddedTier(tier);
+    setTimeout(() => setAddedTier(null), 1500);
+  };
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,13 +106,39 @@ export const Join: React.FC = () => {
             </div>
 
             <div className="mt-4 flex items-baseline space-x-2 border-b border-white/10 pb-4">
-              <span className="text-4xl font-black text-[#EDBB00] font-mono">₹399</span>
+              <span className="text-4xl font-black text-[#EDBB00] font-mono">₹{culerPrice}</span>
               <span className="text-xs text-gray-400 font-mono">/ 1 Year Validity</span>
             </div>
 
             <p className="text-xs text-gray-300 leading-relaxed mt-4">
               Essential membership for every Barça fan in Bengaluru. Join screening RSVPs, get 10% partner discounts, and your physical membership card.
             </p>
+
+            {/* Dynamic Kit Size Selection */}
+            <div className="space-y-2 pt-2">
+              <label className="block text-[11px] font-bold text-gray-300 uppercase tracking-wider font-mono">
+                Select Kit / Apparel Size:
+              </label>
+              <div className="flex flex-wrap gap-1.5">
+                {(membershipConfig.availableKitSizes || ['S', 'M', 'L', 'XL', 'XXL', '3XL']).map((sz) => {
+                  const slab = membershipConfig.sizePriceSlabs?.[sz] || 0;
+                  return (
+                    <button
+                      key={sz}
+                      type="button"
+                      onClick={() => setSelectedCulerSize(sz)}
+                      className={`px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all ${
+                        selectedCulerSize === sz
+                          ? 'bg-[#EDBB00] text-[#060e1a] shadow-md scale-105'
+                          : 'bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10'
+                      }`}
+                    >
+                      {sz} {slab > 0 ? `(+₹${slab})` : ''}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
             <ul className="space-y-2.5 text-xs text-gray-200 font-sans mt-5">
               <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00] shrink-0" /><span>Priority access to all match screenings</span></li>
@@ -87,16 +152,14 @@ export const Join: React.FC = () => {
 
           <div className="space-y-3 pt-6 border-t border-white/10">
             <button
-              onClick={() => {
-                const el = document.getElementById('registration-form');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="w-full py-3.5 rounded-xl bg-white/10 border border-white/20 text-white font-extrabold text-xs uppercase tracking-wider hover:border-[#EDBB00] transition-all"
+              onClick={() => handleAddMembershipToCart('Culer')}
+              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition-all shadow-lg flex items-center justify-center space-x-2"
             >
-              Join Online as Culer (₹399)
+              <ShoppingBag className="w-4 h-4" />
+              <span>{addedTier === 'Culer' ? 'Added to Cart!' : `Add Culer to Cart • ₹${culerPrice}`}</span>
             </button>
             <a
-              href="https://wa.me/919340923809?text=Hi%20Aryaman,%20I%20want%20to%20join%20FCB%20Bengaluru%20as%20a%20Culer%20Member%20(₹399)!"
+              href={`https://wa.me/919340923809?text=${encodeURIComponent(`Hi Aryaman, I want to join FCB Bengaluru as a Culer Member (Size: ${selectedCulerSize}, ₹${culerPrice})!`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full py-3 rounded-xl bg-[#25D366]/20 border border-[#25D366]/50 text-[#25D366] font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 hover:bg-[#25D366]/30 transition-all"
@@ -123,13 +186,39 @@ export const Join: React.FC = () => {
             </div>
 
             <div className="mt-4 flex items-baseline space-x-2 border-b border-white/10 pb-4">
-              <span className="text-4xl font-black text-[#EDBB00] font-mono">₹999</span>
+              <span className="text-4xl font-black text-[#EDBB00] font-mono">₹{sociPrice}</span>
               <span className="text-xs text-gray-400 font-mono">/ 1 Year Validity</span>
             </div>
 
             <p className="text-xs text-gray-300 leading-relaxed mt-4">
               The ultimate Barça Bengaluru experience. Includes official woven scarf goodie kit, 25% screening discounts, VIP seating, and AGM voting rights.
             </p>
+
+            {/* Dynamic Kit Size Selection */}
+            <div className="space-y-2 pt-2">
+              <label className="block text-[11px] font-bold text-gray-300 uppercase tracking-wider font-mono">
+                Select Kit / Apparel Size:
+              </label>
+              <div className="flex flex-wrap gap-1.5">
+                {(membershipConfig.availableKitSizes || ['S', 'M', 'L', 'XL', 'XXL', '3XL']).map((sz) => {
+                  const slab = membershipConfig.sizePriceSlabs?.[sz] || 0;
+                  return (
+                    <button
+                      key={sz}
+                      type="button"
+                      onClick={() => setSelectedSociSize(sz)}
+                      className={`px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all ${
+                        selectedSociSize === sz
+                          ? 'bg-[#EDBB00] text-[#060e1a] shadow-md scale-105'
+                          : 'bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10'
+                      }`}
+                    >
+                      {sz} {slab > 0 ? `(+₹${slab})` : ''}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
             <ul className="space-y-2.5 text-xs text-gray-200 font-sans mt-5">
               <li className="flex items-center space-x-2"><Check className="w-4 h-4 text-[#EDBB00] shrink-0" /><span className="font-bold text-white">Everything in Basic Membership, plus:</span></li>
@@ -144,16 +233,14 @@ export const Join: React.FC = () => {
 
           <div className="space-y-3 pt-6 border-t border-white/10">
             <button
-              onClick={() => {
-                const el = document.getElementById('registration-form');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition-all shadow-xl"
+              onClick={() => handleAddMembershipToCart('Soci')}
+              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition-all shadow-xl flex items-center justify-center space-x-2"
             >
-              Join Online as Soci (₹999)
+              <ShoppingBag className="w-4 h-4" />
+              <span>{addedTier === 'Soci' ? 'Added to Cart!' : `Add Soci to Cart • ₹${sociPrice}`}</span>
             </button>
             <a
-              href="https://wa.me/919340923809?text=Hi%20Aryaman,%20I%20want%20to%20join%20FCB%20Bengaluru%20as%20a%20Soci%20Member%20(₹999)!"
+              href={`https://wa.me/919340923809?text=${encodeURIComponent(`Hi Aryaman, I want to join FCB Bengaluru as a Soci Member (Size: ${selectedSociSize}, ₹${sociPrice})!`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full py-3 rounded-xl bg-[#25D366] text-[#060e1a] font-extrabold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 hover:brightness-110 transition-all shadow-md"

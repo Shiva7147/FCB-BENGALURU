@@ -66,11 +66,19 @@ export const Shop: React.FC = () => {
                   alt={prod.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                {prod.badge && (
-                  <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#A50044] text-white text-[10px] font-black uppercase tracking-widest shadow-md">
-                    {prod.badge}
-                  </span>
-                )}
+                {/* Status Badges */}
+                <div className="absolute top-4 left-4 flex flex-col gap-1.5">
+                  {prod.badge && (
+                    <span className="px-3 py-1 rounded-full bg-[#A50044] text-white text-[10px] font-black uppercase tracking-widest shadow-md">
+                      {prod.badge}
+                    </span>
+                  )}
+                  {!prod.inStock && (
+                    <span className="px-3 py-1 rounded-full bg-red-600/90 text-white text-[10px] font-black uppercase tracking-widest shadow-md">
+                      OUT OF STOCK
+                    </span>
+                  )}
+                </div>
                 
                 {/* Quick View Button */}
                 <button
@@ -95,10 +103,22 @@ export const Shop: React.FC = () => {
                   {prod.description}
                 </p>
 
-                <div className="pt-2 flex items-center justify-between">
-                  <span className="text-xl font-extrabold text-[#EDBB00] font-mono">
-                    ₹{prod.price}
-                  </span>
+                <div className="pt-2 flex items-baseline justify-between">
+                  <div className="flex items-baseline space-x-2">
+                    <span className="text-xl font-extrabold text-[#EDBB00] font-mono">
+                      ₹{prod.price}
+                    </span>
+                    {prod.originalPrice && prod.originalPrice > prod.price && (
+                      <span className="text-xs text-gray-400 line-through font-mono">
+                        ₹{prod.originalPrice}
+                      </span>
+                    )}
+                    {prod.originalPrice && prod.originalPrice > prod.price && (
+                      <span className="text-[10px] font-black text-[#25D366] font-mono">
+                        {Math.round(((prod.originalPrice - prod.price) / prod.originalPrice) * 100)}% OFF
+                      </span>
+                    )}
+                  </div>
                   <span className="text-[11px] text-gray-400 font-mono">
                     Sizes: {prod.sizes.join(', ')}
                   </span>
@@ -115,14 +135,19 @@ export const Shop: React.FC = () => {
                 Options & Size
               </button>
               <button
+                disabled={!prod.inStock}
                 onClick={() => handleQuickAdd(prod)}
                 className={`py-2.5 rounded-xl font-extrabold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-1 shadow-md ${
-                  addedId === prod.id
+                  !prod.inStock
+                    ? 'bg-white/10 text-gray-500 cursor-not-allowed border border-white/10'
+                    : addedId === prod.id
                     ? 'bg-[#25D366] text-white'
                     : 'bg-[#EDBB00] text-[#060e1a] hover:brightness-110'
                 }`}
               >
-                {addedId === prod.id ? (
+                {!prod.inStock ? (
+                  <span>Sold Out</span>
+                ) : addedId === prod.id ? (
                   <>
                     <Check className="w-3.5 h-3.5" />
                     <span>Added!</span>

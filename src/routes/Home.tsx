@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ImageWithFallback } from '../components/PosterFallback';
 import { MarqueeScroller } from '../components/MarqueeScroller';
-import { RSVPModal } from '../components/RSVPModal';
 import { MatchCountdown } from '../components/MatchCountdown';
 import { LiveMatchHype } from '../components/LiveMatchHype';
 import { PastLegendaryScreenings } from '../components/PastLegendaryScreenings';
 import { TestimonialsSection } from '../components/TestimonialsSection';
 import { useAdmin } from '../context/AdminContext';
 import { Screening } from '../types';
+import { Ticket, ExternalLink } from 'lucide-react';
 import heroImage from '../assets/hero_matchday.jpg';
 
 export const Home: React.FC = () => {
@@ -170,12 +170,16 @@ export const Home: React.FC = () => {
 
               <div className="lg:col-span-5 space-y-4 text-center">
                 <MatchCountdown />
-                <button
-                  onClick={() => setActiveRSVPScreening(nextMatch)}
-                  className="w-full py-4 rounded-xl bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-extrabold text-sm uppercase tracking-wider hover:brightness-110 shadow-xl"
+                <a
+                  href={nextMatch.ticketUrl || `https://wa.me/917676114227?text=${encodeURIComponent(`Hi FCB Bengaluru, I want to get tickets for ${nextMatch.match} on ${nextMatch.date}!`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-black text-sm uppercase tracking-wider hover:brightness-110 shadow-xl flex items-center justify-center space-x-2"
                 >
-                  RSVP FOR MATCH DAY
-                </button>
+                  <Ticket className="w-4 h-4" />
+                  <span>GET TICKETS</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
               </div>
             </div>
           </div>
@@ -349,14 +353,6 @@ export const Home: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* RSVP Modal */}
-      {activeRSVPScreening && (
-        <RSVPModal
-          screening={activeRSVPScreening}
-          onClose={() => setActiveRSVPScreening(null)}
-        />
-      )}
 
     </div>
   );

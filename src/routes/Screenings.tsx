@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { SectionHeader } from '../components/SectionHeader';
 import { ImageWithFallback } from '../components/PosterFallback';
-import { RSVPModal } from '../components/RSVPModal';
 import { useAdmin } from '../context/AdminContext';
-import { Screening } from '../types';
-import { Calendar, Clock, MapPin, Ticket, Flame, Trophy, Info } from 'lucide-react';
+import { Calendar, Clock, MapPin, Ticket, Trophy, Info, ExternalLink } from 'lucide-react';
 
 import { ScreeningHubPlanner } from '../components/ScreeningHubPlanner';
 
 export const Screenings: React.FC = () => {
   const { screenings } = useAdmin();
-  const [activeRSVPScreening, setActiveRSVPScreening] = useState<Screening | null>(null);
   const [filter, setFilter] = useState<'all' | 'upcoming' | 'past'>('upcoming');
 
   const filteredScreenings = screenings.filter(sc => {
@@ -155,13 +152,16 @@ export const Screenings: React.FC = () => {
               {/* Action Buttons */}
               <div className="pt-4 border-t border-white/10 flex items-center space-x-3">
                 {sc.isUpcoming ? (
-                  <button
-                    onClick={() => setActiveRSVPScreening(sc)}
-                    className="flex-1 py-3 rounded-xl bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition-all shadow-lg flex items-center justify-center space-x-2"
+                  <a
+                    href={sc.ticketUrl || `https://wa.me/917676114227?text=${encodeURIComponent(`Hi FCB Bengaluru, I want to get tickets for ${sc.match} on ${sc.date}!`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 py-3.5 rounded-xl bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-black text-xs uppercase tracking-wider hover:brightness-110 transition-all shadow-lg flex items-center justify-center space-x-2"
                   >
                     <Ticket className="w-4 h-4" />
-                    <span>RSVP Now</span>
-                  </button>
+                    <span>GET TICKETS</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
                 ) : (
                   <span className="flex-1 py-3 text-center rounded-xl bg-white/5 border border-white/10 text-gray-400 font-bold text-xs uppercase tracking-wider">
                     Screening Concluded
@@ -173,14 +173,6 @@ export const Screenings: React.FC = () => {
           </div>
         ))}
       </div>
-
-      {/* RSVP Modal */}
-      {activeRSVPScreening && (
-        <RSVPModal
-          screening={activeRSVPScreening}
-          onClose={() => setActiveRSVPScreening(null)}
-        />
-      )}
 
     </div>
   );

@@ -1,13 +1,48 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { X, ShoppingBag, Plus, Minus, Trash2, ArrowRight } from 'lucide-react';
+import { X, ShoppingBag, Plus, Minus, Trash2, ArrowRight, MessageCircle, ShieldCheck } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
 export const CartDrawer: React.FC = () => {
-  const { cartItems, isCartOpen, setIsCartOpen, removeFromCart, updateQuantity, subtotal, totalItems } = useCart();
+  const {
+    cartItems,
+    isCartOpen,
+    setIsCartOpen,
+    removeFromCart,
+    updateQuantity,
+    subtotal,
+    totalItems,
+    taxRatePercent,
+    taxAmount,
+    platformFee,
+    totalAmount
+  } = useCart();
   const navigate = useNavigate();
 
   if (!isCartOpen) return null;
+
+  const handleWhatsAppDispatch = () => {
+    if (cartItems.length === 0) return;
+    const itemList = cartItems
+      .map(
+        (item, i) =>
+          `${i + 1}. ${item.product.name} (Size: ${item.selectedSize}) x${item.quantity} = ₹${
+            item.product.price * item.quantity
+          }`
+      )
+      .join('%0A');
+
+    const message = `*FC BARCELONA BENGALURU - MERCHANDISE ORDER*%0A%0A` +
+      `*Items Requested:*%0A${itemList}%0A%0A` +
+      `*Order Summary:*%0A` +
+      `• Subtotal: ₹${subtotal}%0A` +
+      `• Tax (${taxRatePercent}%): ₹${taxAmount}%0A` +
+      `• Platform Fee: ₹${platformFee}%0A` +
+      `• *Total Payable: ₹${totalAmount}*%0A%0A` +
+      `Please confirm stock availability and send payment / pickup details! Força Barça! 🔴🔵`;
+
+    window.open(`https://wa.me/917676114227?text=${message}`, '_blank');
+  };
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden">
@@ -121,37 +156,62 @@ export const CartDrawer: React.FC = () => {
           {/* Footer Summary & Checkout button */}
           {cartItems.length > 0 && (
             <div className="p-6 bg-[#040912] border-t border-white/10 space-y-4">
-              <div className="space-y-1.5 text-xs text-gray-300">
+              <div className="space-y-2 text-xs text-gray-300">
                 <div className="flex justify-between">
-                  <span>Subtotal</span>
+                  <span>Subtotal ({totalItems} items)</span>
                   <span className="font-mono text-white font-bold">₹{subtotal}</span>
                 </div>
+                <div className="flex justify-between text-gray-400">
+                  <span>Applicable Taxes ({taxRatePercent}%)</span>
+                  <span className="font-mono text-white">₹{taxAmount}</span>
+                </div>
+                <div className="flex justify-between text-gray-400">
+                  <span>Platform Fee</span>
+                  <span className="font-mono text-white">₹{platformFee}</span>
+                </div>
                 <div className="flex justify-between text-[11px] text-gray-400">
-                  <span>Bengaluru Local Pickup / Shipping</span>
-                  <span className="text-[#25D366]">Calculated at Checkout</span>
+                  <span>Local Bengaluru Pickup / Courier</span>
+                  <span className="text-[#25D366]">Free Pickup / Courier at Checkout</span>
                 </div>
                 <div className="flex justify-between pt-2 border-t border-white/10 text-sm font-black text-white">
-                  <span>Total Amount</span>
-                  <span className="font-mono text-[#EDBB00] text-base">₹{subtotal}</span>
+                  <span>Total Payable</span>
+                  <span className="font-mono text-[#EDBB00] text-base">₹{totalAmount}</span>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-2">
-                <Link
-                  to="/cart"
-                  onClick={() => setIsCartOpen(false)}
-                  className="py-3 text-center rounded-xl bg-white/10 border border-white/10 text-white font-bold text-xs uppercase tracking-wider hover:bg-white/20 transition-all"
+              {/* Order Dispatch Options: WhatsApp & Online Checkout */}
+              <div className="space-y-2 pt-2">
+                <button
+                  type="button"
+                  onClick={handleWhatsAppDispatch}
+                  className="w-full py-3 rounded-xl bg-[#25D366] text-[#060e1a] font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition-all shadow-lg flex items-center justify-center space-x-2"
                 >
-                  View Full Cart
-                </Link>
-                <Link
-                  to="/checkout"
-                  onClick={() => setIsCartOpen(false)}
-                  className="py-3 text-center rounded-xl bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition-all shadow-lg flex items-center justify-center space-x-1"
-                >
-                  <span>Checkout</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Order Directly via WhatsApp</span>
+                </button>
+
+                <div className="grid grid-cols-2 gap-2">
+                  <Link
+                    to="/cart"
+                    onClick={() => setIsCartOpen(false)}
+                    className="py-2.5 text-center rounded-xl bg-white/10 border border-white/10 text-white font-bold text-xs uppercase tracking-wider hover:bg-white/20 transition-all"
+                  >
+                    View Cart
+                  </Link>
+                  <Link
+                    to="/checkout"
+                    onClick={() => setIsCartOpen(false)}
+                    className="py-2.5 text-center rounded-xl bg-gradient-to-r from-[#EDBB00] to-[#B8860B] text-[#060e1a] font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition-all shadow-lg flex items-center justify-center space-x-1"
+                  >
+                    <span>Checkout</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-center space-x-1.5 text-[10px] text-gray-400 font-mono">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#25D366]" />
+                <span>100% Official FCB Bengaluru Culers Gear</span>
               </div>
             </div>
           )}
