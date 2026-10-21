@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SectionHeader } from '../components/SectionHeader';
 import { useAdmin } from '../context/AdminContext';
 import { CoreMember } from '../types';
-import { X, Shield, Star, Heart } from 'lucide-react';
+import { X, Shield, Star, Heart, RotateCw, Flame, Zap, Activity } from 'lucide-react';
 import { InstagramIcon, TwitterIcon } from '../components/SocialIcons';
 
 export const CoreMembers: React.FC = () => {
@@ -26,6 +26,22 @@ export const CoreMembers: React.FC = () => {
     'cm-12': { rating: 92, community: 94, leadership: 90, matchday: 97, football: 93 },
     'cm-13': { rating: 91, community: 93, leadership: 88, matchday: 92, football: 89 },
     'cm-14': { rating: 95, community: 93, leadership: 92, matchday: 95, football: 99 }
+  };
+
+  const getMemberBackStats = (id: string, name: string) => {
+    let hash = 0;
+    for (let i = 0; i < name.length; i++) {
+      hash = (hash << 5) - hash + name.charCodeAt(i);
+      hash |= 0;
+    }
+    const pos = Math.abs(hash);
+    return {
+      passion: 94 + (pos % 6), // 94 - 99
+      chants: 91 + ((pos >> 2) % 9), // 91 - 99
+      vision: 89 + ((pos >> 3) % 10), // 89 - 98
+      stamina: 92 + ((pos >> 4) % 8), // 92 - 99
+      loyalty: 99
+    };
   };
 
   const departments = ['All', 'Core Team', 'Working Committee', 'Football & Operations'];
@@ -80,87 +96,222 @@ export const CoreMembers: React.FC = () => {
         ))}
       </div>
 
-      {/* Collectible Trading Cards Grid */}
+      {/* Collectible 3D Flipping FIFA Trading Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {filteredMembers.map((member) => {
           const stats = memberStats[member.id] || { rating: 92, community: 92, leadership: 91, matchday: 93, football: 90 };
+          const backStats = getMemberBackStats(member.id, member.name);
           
           return (
             <div
               key={member.id}
-              onClick={() => setSelectedMember(member)}
-              className="fifa-card relative rounded-3xl p-5 bg-gradient-to-b from-[#091830] via-[#060e1a] to-[#70002b] border-2 border-[#EDBB00]/80 shadow-2xl cursor-pointer select-none text-left overflow-hidden group hover:scale-[1.02] transition-transform"
+              className="fifa-flip-container h-[440px] select-none cursor-pointer group"
             >
-              {/* Pitch Line Overlay */}
-              <div className="absolute inset-0 bg-jersey-pattern opacity-20 pointer-events-none" />
-              <div className="absolute top-0 inset-x-0 h-1.5 senyera-accent" />
+              <div className="fifa-flip-card h-full">
+                
+                {/* ---------------- FRONT FACE ---------------- */}
+                <div
+                  onClick={() => setSelectedMember(member)}
+                  className="fifa-card-front fifa-card relative rounded-3xl p-5 bg-gradient-to-b from-[#091830] via-[#060e1a] to-[#70002b] border-2 border-[#EDBB00]/80 shadow-2xl text-left overflow-hidden flex flex-col justify-between h-full"
+                >
+                  {/* Pitch Line Overlay */}
+                  <div className="absolute inset-0 bg-jersey-pattern opacity-20 pointer-events-none" />
+                  <div className="absolute top-0 inset-x-0 h-1.5 senyera-accent" />
 
-              {/* Card Top Strip: Rating & Position */}
-              <div className="flex items-start justify-between relative z-10">
-                <div className="flex flex-col items-center">
-                  <span className="text-3xl sm:text-4xl font-black text-[#EDBB00] font-mono leading-none drop-shadow-[0_2px_8px_rgba(237,187,0,0.6)]">
-                    {stats.rating}
-                  </span>
-                  <span className="text-[10px] font-black text-white tracking-widest uppercase mt-0.5">
-                    {member.department === 'Football & Operations' ? 'OPS' : member.department === 'Working Committee' ? 'ADMIN' : 'LEAD'}
-                  </span>
-                </div>
-                <div className="w-8 h-8 rounded-full bg-[#004D98]/60 border border-[#EDBB00]/40 flex items-center justify-center text-[#EDBB00]">
-                  <Shield className="w-4 h-4" />
-                </div>
-              </div>
+                  {/* Card Top Strip: Rating & Position */}
+                  <div className="flex items-start justify-between relative z-10">
+                    <div className="flex flex-col items-center">
+                      <span className="text-3xl sm:text-4xl font-black text-[#EDBB00] font-mono leading-none drop-shadow-[0_2px_8px_rgba(237,187,0,0.6)]">
+                        {stats.rating}
+                      </span>
+                      <span className="text-[10px] font-black text-white tracking-widest uppercase mt-0.5">
+                        {member.department === 'Football & Operations' ? 'OPS' : member.department === 'Working Committee' ? 'ADMIN' : 'LEAD'}
+                      </span>
+                    </div>
+                    <div className="w-8 h-8 rounded-full bg-[#004D98]/60 border border-[#EDBB00]/40 flex items-center justify-center p-1 shadow-md">
+                      <img
+                        src="https://res.cloudinary.com/dy6mwk08r/image/upload/v1792571429/fcb_logo_png_4x_vbndt1.png"
+                        alt="Crest"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                  </div>
 
-              {/* Portrait Image with perfect framing */}
-              <div className="relative w-36 h-36 mx-auto mt-2 rounded-2xl overflow-hidden border-2 border-[#EDBB00]/60 shadow-xl bg-black/50">
-                <img
-                  src={member.imageUrl}
-                  alt={member.name}
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = `https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80`;
-                  }}
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
+                  {/* Portrait Image with perfect framing */}
+                  <div className="relative w-36 h-36 mx-auto mt-2 rounded-2xl overflow-hidden border-2 border-[#EDBB00]/60 shadow-xl bg-black/50 shrink-0">
+                    <img
+                      src={member.imageUrl}
+                      alt={member.name}
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = `https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80`;
+                      }}
+                      className="w-full h-full object-cover object-top transition-transform duration-300"
+                    />
+                  </div>
 
-              {/* Member Name & Role */}
-              <div className="text-center mt-4 relative z-10 border-t border-[#EDBB00]/30 pt-3">
-                <h3 className="text-lg font-black text-white uppercase tracking-tight truncate">
-                  {member.name}
-                </h3>
-                <p className="text-[10px] font-extrabold text-[#EDBB00] uppercase tracking-widest mt-0.5 truncate">
-                  {member.role}
-                </p>
-                {member.department && (
-                  <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-[9px] font-mono text-gray-300 uppercase">
-                    {member.department}
-                  </span>
-                )}
-              </div>
+                  {/* Member Name & Role */}
+                  <div className="text-center mt-3 relative z-10 border-t border-[#EDBB00]/30 pt-2.5">
+                    <h3 className="text-base sm:text-lg font-black text-white uppercase tracking-tight truncate">
+                      {member.name}
+                    </h3>
+                    <p className="text-[10px] font-extrabold text-[#EDBB00] uppercase tracking-widest mt-0.5 truncate">
+                      {member.role}
+                    </p>
+                    {member.department && (
+                      <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-[9px] font-mono text-gray-300 uppercase">
+                        {member.department}
+                      </span>
+                    )}
+                  </div>
 
-              {/* Ratings Matrix */}
-              <div className="grid grid-cols-2 gap-x-4 gap-y-1 mt-3 pt-3 border-t border-white/10 text-[11px] font-mono text-gray-200">
-                <div className="flex justify-between">
-                  <span className="text-gray-400">COM:</span>
-                  <span className="font-bold text-[#EDBB00]">{stats.community}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">LDR:</span>
-                  <span className="font-bold text-white">{stats.leadership}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">MCH:</span>
-                  <span className="font-bold text-[#EDBB00]">{stats.matchday}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">FTB:</span>
-                  <span className="font-bold text-white">{stats.football}</span>
-                </div>
-              </div>
+                  {/* Front Ratings Matrix */}
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-1 mt-2 pt-2 border-t border-white/10 text-[11px] font-mono text-gray-200">
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">COM:</span>
+                      <span className="font-bold text-[#EDBB00]">{stats.community}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">LDR:</span>
+                      <span className="font-bold text-white">{stats.leadership}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">MCH:</span>
+                      <span className="font-bold text-[#EDBB00]">{stats.matchday}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">FTB:</span>
+                      <span className="font-bold text-white">{stats.football}</span>
+                    </div>
+                  </div>
 
-              <div className="mt-3 text-center">
-                <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider group-hover:text-[#EDBB00] transition-colors">
-                  Click for Full Bio →
-                </span>
+                  {/* Flip Hint */}
+                  <div className="mt-2 text-center pt-2 border-t border-white/10 flex items-center justify-center space-x-1.5 text-[10px] text-[#EDBB00] font-mono font-bold">
+                    <RotateCw className="w-3 h-3 animate-spin-slow" />
+                    <span>Hover to Flip Stats ↻</span>
+                  </div>
+                </div>
+
+                {/* ---------------- BACK FACE ---------------- */}
+                <div
+                  onClick={() => setSelectedMember(member)}
+                  className="fifa-card-back fifa-card relative rounded-3xl p-5 bg-gradient-to-b from-[#70002b] via-[#060e1a] to-[#004D98] border-2 border-[#EDBB00] shadow-2xl text-left overflow-hidden flex flex-col justify-between h-full"
+                >
+                  {/* Pitch Pattern Overlay */}
+                  <div className="absolute inset-0 bg-jersey-pattern opacity-15 pointer-events-none" />
+                  <div className="absolute top-0 inset-x-0 h-1.5 senyera-accent" />
+
+                  {/* Back Header: Crest + FUT Details */}
+                  <div className="flex items-center justify-between border-b border-[#EDBB00]/40 pb-3 relative z-10">
+                    <div className="flex items-center space-x-2">
+                      <img
+                        src="https://res.cloudinary.com/dy6mwk08r/image/upload/v1792571429/fcb_logo_png_4x_vbndt1.png"
+                        alt="FCB Crest"
+                        className="w-8 h-8 object-contain drop-shadow"
+                      />
+                      <div>
+                        <span className="text-[9px] font-mono text-[#EDBB00] font-black uppercase tracking-wider block leading-none">
+                          FUT ATTRIBUTES
+                        </span>
+                        <span className="text-xs font-black text-white uppercase tracking-tight truncate block max-w-[120px]">
+                          {member.name.split(' ')[0]}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-2xl font-black text-[#EDBB00] font-mono drop-shadow block leading-none">
+                        {stats.rating}
+                      </span>
+                      <span className="text-[9px] font-mono text-gray-300 uppercase">OVR</span>
+                    </div>
+                  </div>
+
+                  {/* Skill Attributes Bars */}
+                  <div className="space-y-2.5 relative z-10 py-1">
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-[10px] font-mono">
+                        <span className="text-gray-300 font-bold flex items-center space-x-1">
+                          <Flame className="w-3 h-3 text-[#EDBB00]" />
+                          <span>Chant Decibels</span>
+                        </span>
+                        <span className="text-[#EDBB00] font-bold">{backStats.chants} / 100</span>
+                      </div>
+                      <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+                        <div
+                          className="h-full bg-gradient-to-r from-[#EDBB00] to-[#FFD700] rounded-full transition-all duration-500"
+                          style={{ width: `${backStats.chants}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-[10px] font-mono">
+                        <span className="text-gray-300 font-bold flex items-center space-x-1">
+                          <Zap className="w-3 h-3 text-red-400" />
+                          <span>El Clásico Passion</span>
+                        </span>
+                        <span className="text-red-400 font-bold">{backStats.passion} / 100</span>
+                      </div>
+                      <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+                        <div
+                          className="h-full bg-gradient-to-r from-[#A50044] to-red-500 rounded-full transition-all duration-500"
+                          style={{ width: `${backStats.passion}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-[10px] font-mono">
+                        <span className="text-gray-300 font-bold flex items-center space-x-1">
+                          <Activity className="w-3 h-3 text-[#60A5FA]" />
+                          <span>Tiki-Taka Vision</span>
+                        </span>
+                        <span className="text-[#60A5FA] font-bold">{backStats.vision} / 100</span>
+                      </div>
+                      <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+                        <div
+                          className="h-full bg-gradient-to-r from-[#004D98] to-[#60A5FA] rounded-full transition-all duration-500"
+                          style={{ width: `${backStats.vision}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-[10px] font-mono">
+                        <span className="text-gray-300 font-bold flex items-center space-x-1">
+                          <Shield className="w-3 h-3 text-[#25D366]" />
+                          <span>Matchday Stamina</span>
+                        </span>
+                        <span className="text-[#25D366] font-bold">{backStats.stamina} / 100</span>
+                      </div>
+                      <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+                        <div
+                          className="h-full bg-gradient-to-r from-emerald-600 to-[#25D366] rounded-full transition-all duration-500"
+                          style={{ width: `${backStats.stamina}%` }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Fun Special Attributes */}
+                  <div className="grid grid-cols-2 gap-2 text-[10px] font-mono bg-white/5 p-2.5 rounded-xl border border-white/10 text-center relative z-10">
+                    <div>
+                      <span className="text-gray-400 block text-[9px]">FAV LEGEND</span>
+                      <span className="text-[#EDBB00] font-bold truncate block">{member.favoritePlayer}</span>
+                    </div>
+                    <div>
+                      <span className="text-gray-400 block text-[9px]">LOYALTY</span>
+                      <span className="text-[#25D366] font-bold">100% CULÉ</span>
+                    </div>
+                  </div>
+
+                  {/* Back CTA */}
+                  <div className="text-center pt-2 border-t border-white/10 relative z-10">
+                    <span className="text-[10px] text-[#EDBB00] font-extrabold uppercase tracking-wider hover:underline">
+                      Click Card for Full Bio & Socials →
+                    </span>
+                  </div>
+                </div>
+
               </div>
             </div>
           );

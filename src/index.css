@@ -147,15 +147,41 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* FIFA Trading Card 3D Tilt & Glow */
-.fifa-card {
-  perspective: 1000px;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+/* FIFA Trading Card 3D Tilt, Flip & Glow */
+.fifa-flip-container {
+  perspective: 1400px;
 }
 
-.fifa-card:hover {
-  transform: translateY(-8px) rotateX(4deg) rotateY(-4deg);
-  box-shadow: 0 20px 40px -15px rgba(237, 187, 0, 0.35);
+.fifa-flip-card {
+  position: relative;
+  width: 100%;
+  transition: transform 0.75s cubic-bezier(0.2, 0.85, 0.32, 1.2);
+  transform-style: preserve-3d;
+}
+
+.fifa-flip-container:hover .fifa-flip-card {
+  transform: rotateY(180deg);
+}
+
+.fifa-card-front,
+.fifa-card-back {
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.fifa-card-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+}
+
+.fifa-card {
+  transition: box-shadow 0.4s ease;
+}
+
+.fifa-flip-container:hover .fifa-card {
+  box-shadow: 0 20px 45px -10px rgba(237, 187, 0, 0.45);
 }
 
 /* Custom Scrollbar */
